@@ -73,7 +73,7 @@ module.exports = (grunt) ->
   # Enter the following command at the command line to execute this build task:
   # grunt
   grunt.registerTask 'default', [
-    'coffee:scripts'
+    'coffee:src'
   ]
 
 
@@ -81,6 +81,6 @@ module.exports = (grunt) ->
   # Enter the following command at the command line to execute this build task:
   # grunt dev
   grunt.registerTask 'dev', [
-    'coffee:scripts'
+    'coffee:src'
     'watch'
   ]
