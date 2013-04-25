@@ -1,5 +1,5 @@
 
-app = angular.module('app', ['ng-dropdowns'])
+app = angular.module('app', ['ngDropdowns'])
 
 app.controller('AppCtrl', ($scope) ->
   

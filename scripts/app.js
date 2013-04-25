@@ -1,6 +1,6 @@
 var app;
 
-app = angular.module('app', ['ng-dropdowns']);
+app = angular.module('app', ['ngDropdowns']);
 
 app.controller('AppCtrl', function($scope) {
   $scope.ddSelectOptions = [

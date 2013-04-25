@@ -1,6 +1,6 @@
 
 
-ngdd = angular.module 'ng-dropdowns', []
+ngdd = angular.module 'ngDropdowns', []
 
 ngdd.directive('dropdownSelect', () ->
     return {
