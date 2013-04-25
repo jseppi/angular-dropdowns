@@ -4,7 +4,7 @@ ngdd = angular.module 'ngDropdowns', []
 
 ngdd.directive('dropdownSelect', () ->
     return {
-        restrict: 'EA'
+        restrict: 'A'
         scope:
             dropdownSelect: '='
             ddSelected: '='
