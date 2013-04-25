@@ -6,8 +6,9 @@ ngdd.directive('dropdownSelect', () ->
     return {
         restrict: 'EA'
         scope:
-            selected: '='
             dropdownSelect: '='
+            ddSelected: '='
+            
         transclude: false
         replace: true
 
@@ -19,14 +20,14 @@ ngdd.directive('dropdownSelect', () ->
                 $scope.active = !$scope.active
 
             $scope.select = (text) ->
-                $scope.selected = text
+                $scope.ddSelected = text
 
             return
 
         template:
             "
             <div ng-click='toggleActive()' ng-class='{active:active}' class='wrap-dd-select'>
-                <span class='selected'>{{selected}}</span>
+                <span class='selected'>{{ddSelected}}</span>
                 <ul class='dropdown'>
                     <li ng-repeat='item in dropdownSelect' 
                         ng-class='{divider:item.divider}'
@@ -42,19 +43,51 @@ ngdd.directive('dropdownSelect', () ->
             "
     }               
 )
-.directive('dropdownMenu', () ->
+.directive('dropdownMenu', ($parse, $compile) ->
+    
+    buildTemplate = (items) ->
+        ul = angular.element("<ul class='dropdown'></ul>")
+        
+        for item in items
+            if item.divider then ul.append("<li class='divider'></li>")
+            else if item.text 
+                href = if item.href? then item.href else ''
+                a = angular.element(
+                    "<a href='#{href}' ng-click='select(\"#{item.text}\")'>#{item.text}</a>"
+                )
+                a.prepend("<span class='#{item.iconCls}'></span>") if item.iconCls?
+                ul.append(angular.element("<li></li>").append(a))
+
+        return ul
+
     return {
-        restrict: 'EA'
+        restrict: 'A'
         scope:
-            selected: '='
-            dropdownSelect: '='
-        transclude: false
-        replace: true
+            dropdownMenu: '='
+            ddSelected: '='
 
         controller: ($scope, $element, $attrs) ->
-            #TODO: this dropdown should use the given element as a toggle to the dropdown menu
+
+            selGetter = $parse($attrs.ddSelected)
+            $scope.ddSelected = selGetter($scope)
+            
+            $scope.select = (text) ->
+                $scope.ddSelected = text
+                return
+
+            tpl = buildTemplate($scope.dropdownMenu)
+            tplDom = $compile(tpl)($scope)
+            wrap = angular.element("<div class='wrap-dd-menu'></div>")
+            $element.wrap(wrap)
+            wrap.append(tplDom)
+
+            $element.bind("click", () ->
+                $element.parent().toggleClass('active')
+                return
+            )
+
             return
 
-        template: ""
+
     }
 )

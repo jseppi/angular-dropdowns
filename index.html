@@ -6,14 +6,39 @@
         <meta name="viewport" content="width=device-width">
         <link rel="stylesheet" href="css/normalize.css">
         <link rel="stylesheet" href="css/dropdown.css">
+        <link rel="stylesheet" href="css/page.css">
         <script type="text/javascript" src="lib/angular-1.1.4/angular.js"></script>
         <script type="text/javascript" src="scripts/dropdown.js"></script>
         <script type="text/javascript" src="scripts/app.js"></script>
     </head>
     <body ng-app="app" style="margin-top:50px;">
         <div ng-controller="AppCtrl">
-            <div dropdown-select="dropdown" selected="blah"></div>
-            <p>{{blah}}</p>
+            <div style="margin:0 auto; text-align:center;">
+                <h1>Dropdown Select</h1>
+                <p>You have selected: {{ddSelectSelected}}</p>
+                <div dropdown-select="ddSelectOptions" dd-selected="ddSelectSelected"></div>
+                <hr/>
+                
+                <h1>Dropdown Menu</h1>
+                
+                <h2>On a Button</h2>
+                <p>You have selected: {{ddMenuSelected}}</p>
+                <button dropdown-menu="ddMenuOptions" dd-selected="ddMenuSelected" class="btn-menu">
+                    Menu
+                </button>
+                
+                <h2>On a Div</h2>
+                <p>You have selected: {{ddMenuSelected2}}</p>
+                <div style="cursor:pointer; width:100px; margin:0 auto;" dropdown-menu="ddMenuOptions2" dd-selected="ddMenuSelected2" class="">
+                    Menu
+                </div>
+                
+                <h2>On an Anchor</h2>
+                <p>You have selected: {{ddMenuSelected3}}</p>
+                <a href='' style="width:100px; margin:0 auto;" dropdown-menu="ddMenuOptions3" dd-selected="ddMenuSelected3" class="">
+                    Menu
+                </a>
+            </div>
         </div>
     </body>
 </html>
