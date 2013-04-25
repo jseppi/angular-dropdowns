@@ -6,22 +6,19 @@ app.controller('AppCtrl', ($scope) ->
     $scope.dropdown = [
         {
             text: 'Option1'
-            click: 'blah()'
             iconCls: 'someicon'
         }
         {
             text: 'Option2'
-            href: 'whatever'
         }
         {
             divider: true
-            text: 'don\'t show'
         }  
         {
             text: 'Option4'
-            href: 'whatever'
+            href: '#option4'
         }                   
     ]  
 
-    $scope.blah = "huh" 
+    $scope.blah = "Select an Option" 
 )

@@ -2,9 +2,7 @@
 
 ngdd = angular.module 'ng-dropdowns', []
 
-
-ngdd.directive('dropdownSelect', ($parse, $timeout, $compile) ->
-    
+ngdd.directive('dropdownSelect', () ->
     return {
         restrict: 'EA'
         scope:
@@ -20,37 +18,8 @@ ngdd.directive('dropdownSelect', ($parse, $timeout, $compile) ->
             $scope.toggleActive = () ->
                 $scope.active = !$scope.active
 
-
-            #dropdown = angular.element buildTemplate(items, selected)
-
-            # elm.append(dropdown)
-
-            # scope.selectItem = (txt) ->
-            #     console.log "selected #{txt}", arguments
-            #     return            
-
-            # $compile(dropdown)(scope)
-
-            # wrapper = angular.element(elm.children()[0])
-
-            # wrapper.bind('click', () ->
-            #     wrapper.toggleClass('active')
-            #     return false
-            # )
-
-            # ul = wrapper.find('ul')
-            # lis = ul.children()
-            # angular.forEach(lis, (li) ->
-            #     li = angular.element(li)
-            #     if li.hasClass('divider') then return
-            #     li.bind('click', () ->
-            #         selGetter.assign(scope, li.text())
-            #         scope.$digest()
-            #         #scope.$apply()
-            #         return
-            #     )
-            #     return               
-            # )
+            $scope.select = (text) ->
+                $scope.selected = text
 
             return
 
@@ -63,10 +32,29 @@ ngdd.directive('dropdownSelect', ($parse, $timeout, $compile) ->
                         ng-class='{divider:item.divider}'
                         ng-switch on='item.divider'>
                         <span ng-switch-when='true'></span>
-                        <a ng-switch-default href=''><span>{{item.text}}</span></a>
+                        <a ng-switch-default ng-click='select(item.text)' ng-href='{{item.href}}'>
+                            <span ng-class='item.iconCls'></span>
+                            {{item.text}}
+                        </a>
                     </li>
                 </ul>
             </div>
             "
     }               
+)
+.directive('dropdownMenu', () ->
+    return {
+        restrict: 'EA'
+        scope:
+            selected: '='
+            dropdownSelect: '='
+        transclude: false
+        replace: true
+
+        controller: ($scope, $element, $attrs) ->
+            #TODO: this dropdown should use the given element as a toggle to the dropdown menu
+            return
+
+        template: ""
+    }
 )
