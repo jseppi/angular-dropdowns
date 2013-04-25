@@ -7,7 +7,7 @@ ngdd.directive('dropdownSelect', () ->
         restrict: 'A'
         scope:
             dropdownSelect: '='
-            ddSelected: '='
+            ngModel: '='
             
         transclude: false
         replace: true
@@ -20,14 +20,14 @@ ngdd.directive('dropdownSelect', () ->
                 $scope.active = !$scope.active
 
             $scope.select = (text) ->
-                $scope.ddSelected = text
+                $scope.ngModel = text
 
             return
 
         template:
             "
             <div ng-click='toggleActive()' ng-class='{active:active}' class='wrap-dd-select'>
-                <span class='selected'>{{ddSelected}}</span>
+                <span class='selected'>{{ngModel}}</span>
                 <ul class='dropdown'>
                     <li ng-repeat='item in dropdownSelect' 
                         ng-class='{divider:item.divider}'
@@ -64,15 +64,15 @@ ngdd.directive('dropdownSelect', () ->
         restrict: 'A'
         scope:
             dropdownMenu: '='
-            ddSelected: '='
+            ngModel: '='
 
         controller: ($scope, $element, $attrs) ->
 
-            selGetter = $parse($attrs.ddSelected)
-            $scope.ddSelected = selGetter($scope)
+            selGetter = $parse($attrs.ngModel)
+            $scope.ngModel = selGetter($scope)
             
             $scope.select = (text) ->
-                $scope.ddSelected = text
+                $scope.ngModel = text
                 return
 
             tpl = buildTemplate($scope.dropdownMenu)

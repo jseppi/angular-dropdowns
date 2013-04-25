@@ -16,26 +16,26 @@
             <div style="margin:0 auto; text-align:center;">
                 <h1>Dropdown Select</h1>
                 <p>You have selected: {{ddSelectSelected}}</p>
-                <div dropdown-select="ddSelectOptions" dd-selected="ddSelectSelected"></div>
+                <div dropdown-select="ddSelectOptions" ng-model="ddSelectSelected"></div>
                 <hr/>
                 
                 <h1>Dropdown Menu</h1>
                 
                 <h2>On a Button</h2>
                 <p>You have selected: {{ddMenuSelected}}</p>
-                <button dropdown-menu="ddMenuOptions" dd-selected="ddMenuSelected" class="btn-menu">
+                <button dropdown-menu="ddMenuOptions" ng-model="ddMenuSelected" class="btn-menu">
                     Menu
                 </button>
                 
                 <h2>On a Div</h2>
                 <p>You have selected: {{ddMenuSelected2}}</p>
-                <div style="cursor:pointer; width:100px; margin:0 auto;" dropdown-menu="ddMenuOptions2" dd-selected="ddMenuSelected2" class="">
+                <div style="cursor:pointer; width:100px; margin:0 auto;" dropdown-menu="ddMenuOptions2" ng-model="ddMenuSelected2" class="">
                     Menu
                 </div>
                 
                 <h2>On an Anchor</h2>
                 <p>You have selected: {{ddMenuSelected3}}</p>
-                <a href='' style="width:100px; margin:0 auto;" dropdown-menu="ddMenuOptions3" dd-selected="ddMenuSelected3" class="">
+                <a href='' style="width:100px; margin:0 auto;" dropdown-menu="ddMenuOptions3" ng-model="ddMenuSelected3" class="">
                     Menu
                 </a>
             </div>
