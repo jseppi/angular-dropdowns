@@ -78,7 +78,8 @@ ngdd.directive('dropdownSelect', () ->
             tpl = buildTemplate($scope.dropdownMenu)
             tplDom = $compile(tpl)($scope)
             wrap = angular.element("<div class='wrap-dd-menu'></div>")
-            $element.wrap(wrap)
+            $element.replaceWith(wrap)
+            wrap.append($element)
             wrap.append(tplDom)
 
             $element.bind("click", () ->
