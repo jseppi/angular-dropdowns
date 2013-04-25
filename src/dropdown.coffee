@@ -1,4 +1,5 @@
-
+#TODOS:
+# - styling for divider li elements
 
 ngdd = angular.module 'ngDropdowns', []
 
