@@ -3,7 +3,7 @@
 
 ngdd = angular.module 'ngDropdowns', []
 
-ngdd.directive('dropdownSelect', () ->
+ngdd.directive('dropdownSelect', ($document) ->
     return {
         restrict: 'A'
         scope:
@@ -15,19 +15,27 @@ ngdd.directive('dropdownSelect', () ->
 
         controller: ($scope, $element, $attrs) ->
 
-            $scope.active = false
-
-            $scope.toggleActive = () ->
-                $scope.active = !$scope.active
-
             $scope.select = (text) ->
                 $scope.ngModel = text
+                return
+
+            body = $document.find("body")
+            body.bind("click", () ->
+                $element.removeClass('active')
+                return
+            )
+
+            $element.bind('click', (event) ->
+                event.stopPropagation()
+                $element.toggleClass('active')
+                return
+            )
 
             return
 
         template:
             "
-            <div ng-click='toggleActive()' ng-class='{active:active}' class='wrap-dd-select'>
+            <div class='wrap-dd-select'>
                 <span class='selected'>{{ngModel}}</span>
                 <ul class='dropdown'>
                     <li ng-repeat='item in dropdownSelect' 
@@ -44,7 +52,7 @@ ngdd.directive('dropdownSelect', () ->
             "
     }               
 )
-.directive('dropdownMenu', ($parse, $compile) ->
+.directive('dropdownMenu', ($parse, $compile, $document) ->
     
     buildTemplate = (items) ->
         ul = angular.element("<ul class='dropdown'></ul>")
@@ -83,8 +91,15 @@ ngdd.directive('dropdownSelect', () ->
             wrap.append($element)
             wrap.append(tplDom)
 
-            $element.bind("click", () ->
-                $element.parent().toggleClass('active')
+            body = $document.find("body")
+            body.bind("click", () ->
+                wrap.removeClass('active')
+                return
+            )
+
+            $element.bind("click", (event) ->
+                event.stopPropagation()
+                wrap.toggleClass('active')
                 return
             )
 
