@@ -8,7 +8,7 @@ ngdd.directive('dropdownSelect', ($document) ->
         restrict: 'A'
         scope:
             dropdownSelect: '='
-            ngModel: '='
+            dropdownModel: '='
             
         transclude: false
         replace: true
@@ -16,7 +16,7 @@ ngdd.directive('dropdownSelect', ($document) ->
         controller: ($scope, $element, $attrs) ->
 
             $scope.select = (text) ->
-                $scope.ngModel = text
+                $scope.dropdownModel = text
                 return
 
             body = $document.find("body")
@@ -36,7 +36,7 @@ ngdd.directive('dropdownSelect', ($document) ->
         template:
             "
             <div class='wrap-dd-select'>
-                <span class='selected'>{{ngModel}}</span>
+                <span class='selected'>{{dropdownModel}}</span>
                 <ul class='dropdown'>
                     <li ng-repeat='item in dropdownSelect' 
                         ng-class='{divider:item.divider}'
@@ -73,15 +73,15 @@ ngdd.directive('dropdownSelect', ($document) ->
         restrict: 'A'
         scope:
             dropdownMenu: '='
-            ngModel: '='
+            dropdownModel: '='
 
         controller: ($scope, $element, $attrs) ->
 
-            selGetter = $parse($attrs.ngModel)
-            $scope.ngModel = selGetter($scope)
+            selGetter = $parse($attrs.dropdownModel)
+            $scope.dropdownModel = selGetter($scope)
             
             $scope.select = (text) ->
-                $scope.ngModel = text
+                $scope.dropdownModel = text
                 return
 
             tpl = buildTemplate($scope.dropdownMenu)

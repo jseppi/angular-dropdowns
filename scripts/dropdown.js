@@ -7,7 +7,7 @@ ngdd.directive('dropdownSelect', function($document) {
     restrict: 'A',
     scope: {
       dropdownSelect: '=',
-      ngModel: '='
+      dropdownModel: '='
     },
     transclude: false,
     replace: true,
@@ -15,7 +15,7 @@ ngdd.directive('dropdownSelect', function($document) {
       var body;
 
       $scope.select = function(text) {
-        $scope.ngModel = text;
+        $scope.dropdownModel = text;
       };
       body = $document.find("body");
       body.bind("click", function() {
@@ -26,7 +26,7 @@ ngdd.directive('dropdownSelect', function($document) {
         $element.toggleClass('active');
       });
     },
-    template: "            <div class='wrap-dd-select'>                <span class='selected'>{{ngModel}}</span>                <ul class='dropdown'>                    <li ng-repeat='item in dropdownSelect'                         ng-class='{divider:item.divider}'                        ng-switch on='item.divider'>                        <span ng-switch-when='true'></span>                        <a ng-switch-default ng-click='select(item.text)' ng-href='{{item.href}}'>                            <span ng-class='item.iconCls'></span>                            {{item.text}}                        </a>                    </li>                </ul>            </div>            "
+    template: "            <div class='wrap-dd-select'>                <span class='selected'>{{dropdownModel}}</span>                <ul class='dropdown'>                    <li ng-repeat='item in dropdownSelect'                         ng-class='{divider:item.divider}'                        ng-switch on='item.divider'>                        <span ng-switch-when='true'></span>                        <a ng-switch-default ng-click='select(item.text)' ng-href='{{item.href}}'>                            <span ng-class='item.iconCls'></span>                            {{item.text}}                        </a>                    </li>                </ul>            </div>            "
   };
 }).directive('dropdownMenu', function($parse, $compile, $document) {
   var buildTemplate;
@@ -54,15 +54,15 @@ ngdd.directive('dropdownSelect', function($document) {
     restrict: 'A',
     scope: {
       dropdownMenu: '=',
-      ngModel: '='
+      dropdownModel: '='
     },
     controller: function($scope, $element, $attrs) {
       var body, selGetter, tpl, tplDom, wrap;
 
-      selGetter = $parse($attrs.ngModel);
-      $scope.ngModel = selGetter($scope);
+      selGetter = $parse($attrs.dropdownModel);
+      $scope.dropdownModel = selGetter($scope);
       $scope.select = function(text) {
-        $scope.ngModel = text;
+        $scope.dropdownModel = text;
       };
       tpl = buildTemplate($scope.dropdownMenu);
       tplDom = $compile(tpl)($scope);
