@@ -33,7 +33,7 @@ ngdd.directive('dropdownSelect', ($document) ->
             return
 
         template:
-            "
+            """
             <div class='wrap-dd-select'>
                 <span class='selected'>{{dropdownModel}}</span>
                 <ul class='dropdown'>
@@ -48,7 +48,7 @@ ngdd.directive('dropdownSelect', ($document) ->
                     </li>
                 </ul>
             </div>
-            "
+            """
     }               
 )
 .directive('dropdownMenu', ($parse, $compile, $document) ->

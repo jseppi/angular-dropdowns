@@ -25,7 +25,7 @@ ngdd.directive('dropdownSelect', function($document) {
         $element.toggleClass('active');
       });
     },
-    template: "            <div class='wrap-dd-select'>                <span class='selected'>{{dropdownModel}}</span>                <ul class='dropdown'>                    <li ng-repeat='item in dropdownSelect'                         ng-class='{divider:item.divider}'                        ng-switch on='item.divider'>                        <span ng-switch-when='true'></span>                        <a ng-switch-default ng-click='select(item.text)' ng-href='{{item.href}}'>                            <span ng-class='item.iconCls'></span>                            {{item.text}}                        </a>                    </li>                </ul>            </div>            "
+    template: "<div class='wrap-dd-select'>\n    <span class='selected'>{{dropdownModel}}</span>\n    <ul class='dropdown'>\n        <li ng-repeat='item in dropdownSelect' \n            ng-class='{divider:item.divider}'\n            ng-switch on='item.divider'>\n            <span ng-switch-when='true'></span>\n            <a ng-switch-default ng-click='select(item.text)' ng-href='{{item.href}}'>\n                <span ng-class='item.iconCls'></span>\n                {{item.text}}\n            </a>\n        </li>\n    </ul>\n</div>"
   };
 }).directive('dropdownMenu', function($parse, $compile, $document) {
   var template;
