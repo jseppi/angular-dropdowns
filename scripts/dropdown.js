@@ -5,12 +5,11 @@ ngdd = angular.module('ngDropdowns', []);
 ngdd.directive('dropdownSelect', function($document) {
   return {
     restrict: 'A',
+    replace: true,
     scope: {
       dropdownSelect: '=',
       dropdownModel: '='
     },
-    transclude: false,
-    replace: true,
     controller: function($scope, $element, $attrs) {
       var body;
 
@@ -29,54 +28,36 @@ ngdd.directive('dropdownSelect', function($document) {
     template: "            <div class='wrap-dd-select'>                <span class='selected'>{{dropdownModel}}</span>                <ul class='dropdown'>                    <li ng-repeat='item in dropdownSelect'                         ng-class='{divider:item.divider}'                        ng-switch on='item.divider'>                        <span ng-switch-when='true'></span>                        <a ng-switch-default ng-click='select(item.text)' ng-href='{{item.href}}'>                            <span ng-class='item.iconCls'></span>                            {{item.text}}                        </a>                    </li>                </ul>            </div>            "
   };
 }).directive('dropdownMenu', function($parse, $compile, $document) {
-  var buildTemplate;
+  var template;
 
-  buildTemplate = function(items) {
-    var a, href, item, ul, _i, _len;
-
-    ul = angular.element("<ul class='dropdown'></ul>");
-    for (_i = 0, _len = items.length; _i < _len; _i++) {
-      item = items[_i];
-      if (item.divider) {
-        ul.append("<li class='divider'></li>");
-      } else if (item.text) {
-        href = item.href != null ? item.href : '';
-        a = angular.element("<a href='" + href + "' ng-click='select(\"" + item.text + "\")'>" + item.text + "</a>");
-        if (item.iconCls != null) {
-          a.prepend("<span class='" + item.iconCls + "'></span>");
-        }
-        ul.append(angular.element("<li></li>").append(a));
-      }
-    }
-    return ul;
-  };
+  template = "<ul class='dropdown'>\n    <li ng-repeat='item in dropdownMenu'\n        ng-class='{divider:item.divider}'\n        ng-switch on='item.divider'>\n        <span ng-switch-when='true'></span>\n        <a ng-switch-default ng-click='select(item.text)' ng-href='{{item.href}}'>\n            <span ng-class='item.iconCls'></span>\n            {{item.text}}\n        </a>\n    </li>\n</ul>";
   return {
     restrict: 'A',
+    replace: false,
     scope: {
       dropdownMenu: '=',
       dropdownModel: '='
     },
-    controller: function($scope, $element, $attrs) {
-      var body, selGetter, tpl, tplDom, wrap;
+    controller: function($scope, $element, $attrs, $transclude) {
+      var $wrap, body, selGetter, tpl;
 
       selGetter = $parse($attrs.dropdownModel);
       $scope.dropdownModel = selGetter($scope);
+      tpl = $compile(template)($scope);
+      $wrap = angular.element("<div class='wrap-dd-menu'></div>");
+      $element.replaceWith($wrap);
+      $wrap.append($element);
+      $wrap.append(tpl);
       $scope.select = function(text) {
         $scope.dropdownModel = text;
       };
-      tpl = buildTemplate($scope.dropdownMenu);
-      tplDom = $compile(tpl)($scope);
-      wrap = angular.element("<div class='wrap-dd-menu'></div>");
-      $element.replaceWith(wrap);
-      wrap.append($element);
-      wrap.append(tplDom);
       body = $document.find("body");
       body.bind("click", function() {
-        wrap.removeClass('active');
+        tpl.removeClass('active');
       });
       $element.bind("click", function(event) {
         event.stopPropagation();
-        wrap.toggleClass('active');
+        tpl.toggleClass('active');
       });
     }
   };

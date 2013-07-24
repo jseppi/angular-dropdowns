@@ -140,7 +140,7 @@
     /* Size & position */
     position: absolute;
     z-index: 1;
-    /*top: 100%;*/
+    top: 70%;
     left: 0;
     right: 0;
  
@@ -212,7 +212,7 @@
     border-color: rgba(0,0,0,0.1) transparent;    
 }
 
-.wrap-dd-menu.active .dropdown {
+.wrap-dd-menu .dropdown.active {
     opacity: 1;
     pointer-events: auto;
 }
