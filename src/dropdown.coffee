@@ -74,7 +74,7 @@ ngdd.directive('dropdownSelect', ($document) ->
             dropdownMenu: '='
             dropdownModel: '='
 
-        controller: ($scope, $element, $attrs, $transclude) ->
+        controller: ($scope, $element, $attrs) ->
 
             selGetter = $parse($attrs.dropdownModel)
             $scope.dropdownModel = selGetter($scope)

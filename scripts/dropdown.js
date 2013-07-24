@@ -38,7 +38,7 @@ ngdd.directive('dropdownSelect', function($document) {
       dropdownMenu: '=',
       dropdownModel: '='
     },
-    controller: function($scope, $element, $attrs, $transclude) {
+    controller: function($scope, $element, $attrs) {
       var $wrap, body, selGetter, tpl;
 
       selGetter = $parse($attrs.dropdownModel);
