@@ -6,10 +6,12 @@ app.controller('AppCtrl', ($scope) ->
     $scope.ddSelectOptions = [
         {
             text: 'Option1'
+            value: 'one'
             iconCls: 'someicon'
         }
         {
             text: 'Option2'
+            someprop: 'somevalue'
         }
         {
             divider: true
@@ -20,9 +22,10 @@ app.controller('AppCtrl', ($scope) ->
         }                   
     ]  
 
-    $scope.ddSelectSelected = "Select an Option" 
-
-
+    $scope.ddSelectSelected = {
+        text: "Select an Option"
+    } 
+    
     $scope.ddMenuOptions = [
         {
             text: 'Option1'
@@ -40,7 +43,7 @@ app.controller('AppCtrl', ($scope) ->
         }
     ]  
 
-    $scope.ddMenuSelected = "" 
+    $scope.ddMenuSelected = {} 
 
     $scope.ddMenuOptions2 = [
         {
@@ -59,7 +62,7 @@ app.controller('AppCtrl', ($scope) ->
         }
     ]  
 
-    $scope.ddMenuSelected2 = "" 
+    $scope.ddMenuSelected2 = {}
 
     $scope.ddMenuOptions3 = [
         {
@@ -78,5 +81,5 @@ app.controller('AppCtrl', ($scope) ->
         }
     ]  
 
-    $scope.ddMenuSelected3 = "" 
+    $scope.ddMenuSelected3 = {}
 )

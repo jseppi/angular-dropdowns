@@ -6,9 +6,11 @@ app.controller('AppCtrl', function($scope) {
   $scope.ddSelectOptions = [
     {
       text: 'Option1',
+      value: 'one',
       iconCls: 'someicon'
     }, {
-      text: 'Option2'
+      text: 'Option2',
+      someprop: 'somevalue'
     }, {
       divider: true
     }, {
@@ -16,7 +18,9 @@ app.controller('AppCtrl', function($scope) {
       href: '#option4'
     }
   ];
-  $scope.ddSelectSelected = "Select an Option";
+  $scope.ddSelectSelected = {
+    text: "Select an Option"
+  };
   $scope.ddMenuOptions = [
     {
       text: 'Option1',
@@ -30,7 +34,7 @@ app.controller('AppCtrl', function($scope) {
       href: '#option4'
     }
   ];
-  $scope.ddMenuSelected = "";
+  $scope.ddMenuSelected = {};
   $scope.ddMenuOptions2 = [
     {
       text: 'Option2-1',
@@ -44,7 +48,7 @@ app.controller('AppCtrl', function($scope) {
       href: '#option2-4'
     }
   ];
-  $scope.ddMenuSelected2 = "";
+  $scope.ddMenuSelected2 = {};
   $scope.ddMenuOptions3 = [
     {
       text: 'Option3-1',
@@ -58,5 +62,5 @@ app.controller('AppCtrl', function($scope) {
       href: '#option3-4'
     }
   ];
-  return $scope.ddMenuSelected3 = "";
+  return $scope.ddMenuSelected3 = {};
 });

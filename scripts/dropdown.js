@@ -13,8 +13,8 @@ ngdd.directive('dropdownSelect', function($document) {
     controller: function($scope, $element, $attrs) {
       var body;
 
-      $scope.select = function(text) {
-        $scope.dropdownModel = text;
+      this.select = function(selected) {
+        angular.copy(selected, $scope.dropdownModel);
       };
       body = $document.find("body");
       body.bind("click", function() {
@@ -25,12 +25,29 @@ ngdd.directive('dropdownSelect', function($document) {
         $element.toggleClass('active');
       });
     },
-    template: "<div class='wrap-dd-select'>\n    <span class='selected'>{{dropdownModel}}</span>\n    <ul class='dropdown'>\n        <li ng-repeat='item in dropdownSelect' \n            ng-class='{divider:item.divider}'\n            ng-switch on='item.divider'>\n            <span ng-switch-when='true'></span>\n            <a ng-switch-default ng-click='select(item.text)' ng-href='{{item.href}}'>\n                <span ng-class='item.iconCls'></span>\n                {{item.text}}\n            </a>\n        </li>\n    </ul>\n</div>"
+    template: "<div class='wrap-dd-select'>\n    <span class='selected'>{{dropdownModel.text}}</span>\n    <ul class='dropdown'>\n        <li ng-repeat='item in dropdownSelect'\n            dropdown-select-item='item'>\n        </li>\n    </ul>\n</div>"
+  };
+}).directive('dropdownSelectItem', function() {
+  return {
+    require: '^dropdownSelect',
+    replace: true,
+    scope: {
+      dropdownSelectItem: '='
+    },
+    link: function(scope, element, attrs, dropdownSelectCtrl) {
+      scope.selectItem = function() {
+        if (scope.dropdownSelectItem.href) {
+          return;
+        }
+        dropdownSelectCtrl.select(scope.dropdownSelectItem);
+      };
+    },
+    template: "<li ng-class='{divider: dropdownSelectItem.divider}'>\n    <a href='' \n        ng-if='!dropdownSelectItem.divider' \n        ng-href='{{dropdownSelectItem.href}}'\n        ng-click='selectItem()'>\n        {{dropdownSelectItem.text}}\n    </a>\n</li>"
   };
 }).directive('dropdownMenu', function($parse, $compile, $document) {
   var template;
 
-  template = "<ul class='dropdown'>\n    <li ng-repeat='item in dropdownMenu'\n        ng-class='{divider:item.divider}'\n        ng-switch on='item.divider'>\n        <span ng-switch-when='true'></span>\n        <a ng-switch-default ng-click='select(item.text)' ng-href='{{item.href}}'>\n            <span ng-class='item.iconCls'></span>\n            {{item.text}}\n        </a>\n    </li>\n</ul>";
+  template = "<ul class='dropdown'>\n    <li ng-repeat='item in dropdownMenu'\n        dropdown-menu-item='item'></li>\n    </li>\n</ul>";
   return {
     restrict: 'A',
     replace: false,
@@ -39,17 +56,17 @@ ngdd.directive('dropdownSelect', function($document) {
       dropdownModel: '='
     },
     controller: function($scope, $element, $attrs) {
-      var $wrap, body, selGetter, tpl;
+      var $template, $wrap, body, tpl;
 
-      selGetter = $parse($attrs.dropdownModel);
-      $scope.dropdownModel = selGetter($scope);
-      tpl = $compile(template)($scope);
+      $template = angular.element(template);
+      $template.data('$dropdownMenuController', this);
+      tpl = $compile($template)($scope);
       $wrap = angular.element("<div class='wrap-dd-menu'></div>");
       $element.replaceWith($wrap);
       $wrap.append($element);
       $wrap.append(tpl);
-      $scope.select = function(text) {
-        $scope.dropdownModel = text;
+      this.select = function(selected) {
+        angular.copy(selected, $scope.dropdownModel);
       };
       body = $document.find("body");
       body.bind("click", function() {
@@ -60,5 +77,22 @@ ngdd.directive('dropdownSelect', function($document) {
         tpl.toggleClass('active');
       });
     }
+  };
+}).directive('dropdownMenuItem', function() {
+  return {
+    require: '^dropdownMenu',
+    replace: true,
+    scope: {
+      dropdownMenuItem: '='
+    },
+    link: function(scope, element, attrs, dropdownMenuCtrl) {
+      scope.selectItem = function() {
+        if (scope.dropdownMenuItem.href) {
+          return;
+        }
+        dropdownMenuCtrl.select(scope.dropdownMenuItem);
+      };
+    },
+    template: "<li ng-class='{divider: dropdownMenuItem.divider}'>\n    <a href='' \n        ng-if='!dropdownMenuItem.divider' \n        ng-href='{{dropdownMenuItem.href}}'\n        ng-click='selectItem()'>\n        {{dropdownMenuItem.text}}\n    </a>\n</li>"
   };
 });
