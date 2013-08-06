@@ -5,20 +5,22 @@ Dropdown directives for AngularJS (Version 1.1.5).
 
 Includes both a select-style dropdown and a menu-style dropdown.  The menu-style dropdown attaches to an existing element (button, link, div, etc), whereas the select-style dropdown replaces the element it is attached to.
 
-See examples for usage: http://jsbin.com/uzicuy/2/
+See examples: http://jsbin.com/uzicuy/2/
 
-Basically, include 'ngDropdowns' in your module dependencies:
+Usage
+-----
+
+Include `ngDropdowns` in your module dependencies:
 
     app = angular.module('app', ['ngDropdowns'])
 
-Then in your controller, setup the select options and currently selected value (optional):
+In your controller, setup the select options and object to hold the selected value:
 
     app.controller('AppCtrl', ($scope) ->
       
         # By default the 'text' property will be used as the display text in the dropdown entry.
         # All options that are not dividers must have a 'text' property.
-        # Or you can specify a different property name via the dropdown-item-label attribute 
-        # from which the item labels will be pulled.
+        # Or you can specify a different property name via the dropdown-item-label attribute.
         #
         # If an options object has an 'href' property set, then that dropdown entry
         #   will behave as a link and cannot be selected. 
@@ -46,18 +48,33 @@ Then in your controller, setup the select options and currently selected value (
         $scope.ddSelectSelected = {} # Must be an object
     )
     
-And in your html, specify the dropdown-select and dropdown-model attributes on an element. 
+And in your html, specify the `dropdown-select` and `dropdown-model` attributes on an element. 
 
-You can optionally set dropdown-item-label to specify a different label field from the default (which is 'text'):
+You can optionally set `dropdown-item-label` to specify a different label field from the default (which is 'text'):
 
     <div ng-controller="AppCtrl">
         <div>
             <h1>Dropdown Select</h1>
             <p>You have selected: {{ddSelectSelected}}</p>
-            <div dropdown-item-label="text" 
-                dropdown-select="ddSelectOptions" 
-                dropdown-model="ddSelectSelected">
+            <div dropdown-select="ddSelectOptions"
+                dropdown-model="ddSelectSelected"
+                dropdown-item-label="text" >
             </div>
+        </div>
+    </div>
+    
+For a menu-style dropdown, use `dropdown-menu` in place of `dropdown-select`:
+
+    <div ng-controller="AppCtrl">
+        <div>
+            <h1>Dropdown Select</h1>
+            <p>You have selected: {{ddSelectSelected}}</p>
+            <a href='' title=''
+                dropdown-menu="ddSelectOptions" 
+                dropdown-model="ddSelectSelected"
+                dropdown-item-label="text">
+                Menu
+            </a>
         </div>
     </div>
     
