@@ -15,9 +15,11 @@ Then in your controller, setup the select options and currently selected value (
 
     app.controller('AppCtrl', ($scope) ->
       
-        # The 'text' property will be used as the display text in the dropdown entry.
+        # By default the 'text' property will be used as the display text in the dropdown entry.
         # All options that are not dividers must have a 'text' property.
-        # 
+        # Or you can specify a different property name via the dropdown-item-label attribute 
+        # from which the item labels will be pulled.
+        #
         # If an options object has an 'href' property set, then that dropdown entry
         #   will behave as a link and cannot be selected. 
         $scope.ddSelectOptions = [
@@ -44,13 +46,18 @@ Then in your controller, setup the select options and currently selected value (
         $scope.ddSelectSelected = {} # Must be an object
     )
     
-And in your html, specify the dropdown-select and dropdown-model attributes on an element:
+And in your html, specify the dropdown-select and dropdown-model attributes on an element. 
+
+You can optionally set dropdown-item-label to specify a different label field from the default (which is 'text'):
 
     <div ng-controller="AppCtrl">
         <div>
             <h1>Dropdown Select</h1>
             <p>You have selected: {{ddSelectSelected}}</p>
-            <div dropdown-select="ddSelectOptions" dropdown-model="ddSelectSelected"></div>
+            <div dropdown-item-label="text" 
+                dropdown-select="ddSelectOptions" 
+                dropdown-model="ddSelectSelected">
+            </div>
         </div>
     </div>
     

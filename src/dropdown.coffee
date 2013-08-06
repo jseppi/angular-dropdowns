@@ -6,12 +6,13 @@ ngdd.directive('dropdownSelect', ($document) ->
         restrict: 'A'
         replace: true
         scope:
-            dropdownSelect: '=' # Must have a .text attribute
+            dropdownSelect: '='
             dropdownModel: '='
         
-
         controller: ($scope, $element, $attrs) ->
 
+            $scope.labelField = if $attrs.dropdownItemLabel? then $attrs.dropdownItemLabel else 'text'
+            
             this.select = (selected) ->
                 angular.copy(selected, $scope.dropdownModel)
                 return
@@ -36,7 +37,8 @@ ngdd.directive('dropdownSelect', ($document) ->
                 <span class='selected'>{{dropdownModel.text}}</span>
                 <ul class='dropdown'>
                     <li ng-repeat='item in dropdownSelect'
-                        dropdown-select-item='item'>
+                        dropdown-select-item='item'
+                        dropdown-item-label='labelField'>
                     </li>
                 </ul>
             </div>
@@ -48,8 +50,11 @@ ngdd.directive('dropdownSelect', ($document) ->
         require: '^dropdownSelect'
         replace: true
         scope:
+            dropdownItemLabel: '='
             dropdownSelectItem: '='
+
         link: (scope, element, attrs, dropdownSelectCtrl) ->
+            
             scope.selectItem = () ->
                 return if scope.dropdownSelectItem.href
                 dropdownSelectCtrl.select scope.dropdownSelectItem
@@ -63,7 +68,7 @@ ngdd.directive('dropdownSelect', ($document) ->
                     ng-if='!dropdownSelectItem.divider' 
                     ng-href='{{dropdownSelectItem.href}}'
                     ng-click='selectItem()'>
-                    {{dropdownSelectItem.text}}
+                    {{dropdownSelectItem[dropdownItemLabel]}}
                 </a>
             </li>"""
     }
@@ -74,6 +79,7 @@ ngdd.directive('dropdownSelect', ($document) ->
     template = """
         <ul class='dropdown'>
             <li ng-repeat='item in dropdownMenu'
+                dropdown-item-label='labelField'
                 dropdown-menu-item='item'></li>
             </li>
         </ul>
@@ -87,6 +93,8 @@ ngdd.directive('dropdownSelect', ($document) ->
             dropdownModel: '='
 
         controller: ($scope, $element, $attrs) ->
+
+            $scope.labelField = if $attrs.dropdownItemLabel? then $attrs.dropdownItemLabel else 'text'
 
             $template = angular.element(template)
 
@@ -127,6 +135,8 @@ ngdd.directive('dropdownSelect', ($document) ->
         replace: true
         scope:
             dropdownMenuItem: '='
+            dropdownItemLabel: '='
+
         link: (scope, element, attrs, dropdownMenuCtrl) ->
 
             scope.selectItem = () ->
@@ -142,7 +152,7 @@ ngdd.directive('dropdownSelect', ($document) ->
                     ng-if='!dropdownMenuItem.divider' 
                     ng-href='{{dropdownMenuItem.href}}'
                     ng-click='selectItem()'>
-                    {{dropdownMenuItem.text}}
+                    {{dropdownMenuItem[dropdownItemLabel]}}
                 </a>
             </li>"""
     }

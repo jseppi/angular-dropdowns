@@ -13,6 +13,7 @@ ngdd.directive('dropdownSelect', function($document) {
     controller: function($scope, $element, $attrs) {
       var body;
 
+      $scope.labelField = $attrs.dropdownItemLabel != null ? $attrs.dropdownItemLabel : 'text';
       this.select = function(selected) {
         angular.copy(selected, $scope.dropdownModel);
       };
@@ -25,13 +26,14 @@ ngdd.directive('dropdownSelect', function($document) {
         $element.toggleClass('active');
       });
     },
-    template: "<div class='wrap-dd-select'>\n    <span class='selected'>{{dropdownModel.text}}</span>\n    <ul class='dropdown'>\n        <li ng-repeat='item in dropdownSelect'\n            dropdown-select-item='item'>\n        </li>\n    </ul>\n</div>"
+    template: "<div class='wrap-dd-select'>\n    <span class='selected'>{{dropdownModel.text}}</span>\n    <ul class='dropdown'>\n        <li ng-repeat='item in dropdownSelect'\n            dropdown-select-item='item'\n            dropdown-item-label='labelField'>\n        </li>\n    </ul>\n</div>"
   };
 }).directive('dropdownSelectItem', function() {
   return {
     require: '^dropdownSelect',
     replace: true,
     scope: {
+      dropdownItemLabel: '=',
       dropdownSelectItem: '='
     },
     link: function(scope, element, attrs, dropdownSelectCtrl) {
@@ -42,12 +44,12 @@ ngdd.directive('dropdownSelect', function($document) {
         dropdownSelectCtrl.select(scope.dropdownSelectItem);
       };
     },
-    template: "<li ng-class='{divider: dropdownSelectItem.divider}'>\n    <a href='' \n        ng-if='!dropdownSelectItem.divider' \n        ng-href='{{dropdownSelectItem.href}}'\n        ng-click='selectItem()'>\n        {{dropdownSelectItem.text}}\n    </a>\n</li>"
+    template: "<li ng-class='{divider: dropdownSelectItem.divider}'>\n    <a href='' \n        ng-if='!dropdownSelectItem.divider' \n        ng-href='{{dropdownSelectItem.href}}'\n        ng-click='selectItem()'>\n        {{dropdownSelectItem[dropdownItemLabel]}}\n    </a>\n</li>"
   };
 }).directive('dropdownMenu', function($parse, $compile, $document) {
   var template;
 
-  template = "<ul class='dropdown'>\n    <li ng-repeat='item in dropdownMenu'\n        dropdown-menu-item='item'></li>\n    </li>\n</ul>";
+  template = "<ul class='dropdown'>\n    <li ng-repeat='item in dropdownMenu'\n        dropdown-item-label='labelField'\n        dropdown-menu-item='item'></li>\n    </li>\n</ul>";
   return {
     restrict: 'A',
     replace: false,
@@ -58,6 +60,7 @@ ngdd.directive('dropdownSelect', function($document) {
     controller: function($scope, $element, $attrs) {
       var $template, $wrap, body, tpl;
 
+      $scope.labelField = $attrs.dropdownItemLabel != null ? $attrs.dropdownItemLabel : 'text';
       $template = angular.element(template);
       $template.data('$dropdownMenuController', this);
       tpl = $compile($template)($scope);
@@ -83,7 +86,8 @@ ngdd.directive('dropdownSelect', function($document) {
     require: '^dropdownMenu',
     replace: true,
     scope: {
-      dropdownMenuItem: '='
+      dropdownMenuItem: '=',
+      dropdownItemLabel: '='
     },
     link: function(scope, element, attrs, dropdownMenuCtrl) {
       scope.selectItem = function() {
@@ -93,6 +97,6 @@ ngdd.directive('dropdownSelect', function($document) {
         dropdownMenuCtrl.select(scope.dropdownMenuItem);
       };
     },
-    template: "<li ng-class='{divider: dropdownMenuItem.divider}'>\n    <a href='' \n        ng-if='!dropdownMenuItem.divider' \n        ng-href='{{dropdownMenuItem.href}}'\n        ng-click='selectItem()'>\n        {{dropdownMenuItem.text}}\n    </a>\n</li>"
+    template: "<li ng-class='{divider: dropdownMenuItem.divider}'>\n    <a href='' \n        ng-if='!dropdownMenuItem.divider' \n        ng-href='{{dropdownMenuItem.href}}'\n        ng-click='selectItem()'>\n        {{dropdownMenuItem[dropdownItemLabel]}}\n    </a>\n</li>"
   };
 });
