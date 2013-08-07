@@ -38,7 +38,7 @@ app.controller('AppCtrl', ($scope) ->
             divider: true
         }  
         {
-            text: 'Option4'
+            text: 'A link'
             href: '#option4'
         }
     ]  
@@ -47,17 +47,17 @@ app.controller('AppCtrl', ($scope) ->
 
     $scope.ddMenuOptions2 = [
         {
-            name: 'Option2-1'
+            name: 'Option2-1 Name'
             iconCls: 'someicon'
         }
         {
-            name: 'Option2-2'
+            name: 'Option2-2 Name'
         }
         {
             divider: true
         }  
         {
-            name: 'Option2-4'
+            name: 'A link'
             href: '#option2-4'
         }
     ]  
@@ -76,7 +76,7 @@ app.controller('AppCtrl', ($scope) ->
             divider: true
         }  
         {
-            text: 'Option3-4'
+            text: 'A link'
             href: '#option3-4'
         }
     ]  
