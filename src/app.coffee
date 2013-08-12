@@ -18,7 +18,7 @@ app.controller('AppCtrl', ($scope) ->
         }  
         {
             text: 'Option4'
-            href: '#option4'
+            href: 'http://www.google.com'
         }                   
     ]  
 
@@ -39,7 +39,7 @@ app.controller('AppCtrl', ($scope) ->
         }  
         {
             text: 'A link'
-            href: '#option4'
+            href: 'http://www.google.com'
         }
     ]  
 
@@ -58,7 +58,7 @@ app.controller('AppCtrl', ($scope) ->
         }  
         {
             name: 'A link'
-            href: '#option2-4'
+            href: 'http://www.google.com'
         }
     ]  
 
@@ -77,7 +77,7 @@ app.controller('AppCtrl', ($scope) ->
         }  
         {
             text: 'A link'
-            href: '#option3-4'
+            href: 'http://www.google.com'
         }
     ]  
 

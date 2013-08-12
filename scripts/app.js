@@ -15,7 +15,7 @@ app.controller('AppCtrl', function($scope) {
       divider: true
     }, {
       text: 'Option4',
-      href: '#option4'
+      href: 'http://www.google.com'
     }
   ];
   $scope.ddSelectSelected = {
@@ -31,7 +31,7 @@ app.controller('AppCtrl', function($scope) {
       divider: true
     }, {
       text: 'A link',
-      href: '#option4'
+      href: 'http://www.google.com'
     }
   ];
   $scope.ddMenuSelected = {};
@@ -45,7 +45,7 @@ app.controller('AppCtrl', function($scope) {
       divider: true
     }, {
       name: 'A link',
-      href: '#option2-4'
+      href: 'http://www.google.com'
     }
   ];
   $scope.ddMenuSelected2 = {};
@@ -59,7 +59,7 @@ app.controller('AppCtrl', function($scope) {
       divider: true
     }, {
       text: 'A link',
-      href: '#option3-4'
+      href: 'http://www.google.com'
     }
   ];
   return $scope.ddMenuSelected3 = {};
