@@ -14,7 +14,7 @@ app.controller('AppCtrl', function($scope) {
     }, {
       divider: true
     }, {
-      text: 'A link',
+      text: 'Option4',
       href: 'http://www.google.com'
     }
   ];
