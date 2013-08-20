@@ -1,6 +1,4 @@
-path = require 'path'
 
-# Build configurations.
 module.exports = (grunt) ->
   grunt.initConfig
     # Deletes Compiled script directory
@@ -17,7 +15,7 @@ module.exports = (grunt) ->
       src:
         files: [
           cwd: './src'
-          src: '**/*.coffee'
+          src: '*.coffee'
           dest: './scripts'
           expand: true
           ext: '.js'
@@ -51,23 +49,27 @@ module.exports = (grunt) ->
     karma:
       unit:
         options:
-          autoWatch: true
-          browsers: ['Chrome']
+          frameworks: ['jasmine']
+          browsers: ['PhantomJS']
+          files: [
+            './lib/angular-1.1.5/angular.min.js'
+            './lib/angular-1.1.5/angular-mocks.js'
+            './lib/test/chai.js'
+            './src/*.coffee'
+            './src/test/*.coffee'
+          ]
           colors: true
-          configFile: './test/karma-conf.js'
           port: 8081
-          reporters: ['progress']
           runnerPort: 9100
-          singleRun: true
+          autoWatch: true
 
     # Sets up file watchers and runs tasks when watched files are changed.
     watch:
-      coffee:
+      src:
         files: './src/**'
         tasks: [
           'coffee:src'
         ]
-
   # Register grunt tasks supplied by grunt-contrib-*.
   # Referenced in package.json.
   # https://github.com/gruntjs/grunt-contrib
@@ -82,13 +84,11 @@ module.exports = (grunt) ->
   # https://github.com/Dignifiedquire/grunt-testacular
   grunt.loadNpmTasks 'grunt-karma'
 
-  # Compiles the app with non-optimized build settings and runs unit tests.
+  # Runs unit tests using the karma:unit task.
   # Enter the following command at the command line to execute this build task:
   # grunt test
   grunt.registerTask 'test', [
-    'clean:working'
-    'default'
-    'karma'
+    'karma:unit'
   ]
 
   # Compiles the app with non-optimized build settings.
@@ -106,5 +106,5 @@ module.exports = (grunt) ->
   # grunt dev
   grunt.registerTask 'dev', [
     'coffee:src'
-    'watch'
+    'watch:src'
   ]
