@@ -1,7 +1,6 @@
 
-ngdd = angular.module 'ngDropdowns', []
-
-ngdd.directive('dropdownSelect', ($document) ->
+angular.module('ngDropdowns', [])
+.directive('dropdownSelect', ['$document', ($document) ->
     return {
         restrict: 'A'
         replace: true
@@ -9,7 +8,7 @@ ngdd.directive('dropdownSelect', ($document) ->
             dropdownSelect: '='
             dropdownModel: '='
         
-        controller: ($scope, $element, $attrs) ->
+        controller: ['$scope', '$element', '$attrs', ($scope, $element, $attrs) ->
 
             $scope.labelField = if $attrs.dropdownItemLabel? then $attrs.dropdownItemLabel else 'text'
             
@@ -30,6 +29,7 @@ ngdd.directive('dropdownSelect', ($document) ->
             )
 
             return
+        ]
 
         template:
             """
@@ -44,8 +44,8 @@ ngdd.directive('dropdownSelect', ($document) ->
             </div>
             """
     }               
-)
-.directive('dropdownSelectItem', () ->
+])
+.directive('dropdownSelectItem', [() ->
     return {
         require: '^dropdownSelect'
         replace: true
@@ -61,7 +61,7 @@ ngdd.directive('dropdownSelect', ($document) ->
                 return
 
             return
-        
+
         template: """
             <li ng-class='{divider: dropdownSelectItem.divider}'>
                 <a href='' 
@@ -73,8 +73,8 @@ ngdd.directive('dropdownSelect', ($document) ->
             </li>"""
     }
 
-)
-.directive('dropdownMenu', ($parse, $compile, $document) ->
+])
+.directive('dropdownMenu', ['$parse', '$compile', '$document', ($parse, $compile, $document) ->
     
     template = """
         <ul class='dropdown'>
@@ -92,7 +92,7 @@ ngdd.directive('dropdownSelect', ($document) ->
             dropdownMenu: '='
             dropdownModel: '='
 
-        controller: ($scope, $element, $attrs) ->
+        controller: ['$scope', '$element', '$attrs', ($scope, $element, $attrs) ->
 
             $scope.labelField = if $attrs.dropdownItemLabel? then $attrs.dropdownItemLabel else 'text'
 
@@ -127,9 +127,10 @@ ngdd.directive('dropdownSelect', ($document) ->
             )
 
             return
+        ]
     }
-)
-.directive('dropdownMenuItem', () ->
+])
+.directive('dropdownMenuItem', [() ->
     return {
         require: '^dropdownMenu'
         replace: true
@@ -157,4 +158,4 @@ ngdd.directive('dropdownSelect', ($document) ->
             </li>"""
     }
 
-)
+])

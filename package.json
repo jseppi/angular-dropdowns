@@ -1,34 +1,35 @@
 {
-    "name": "angular-dropdowns",
-    "version": "0.0.0",
-    "author": {
-        "name": "James Seppi",
-        "url": "http://www.github.com/jseppi"
-    },
-    "description": "AngularJS Dropdown Directives",
-    "contributors": [
-        {
-            "name": "James Seppi",
-            "email": "james.seppi@gmail.com",
-            "url": "https://github.com/jseppi"
-        }
-    ],
-    "repository": {
-        "type": "git",
-        "url": "https://github.com/jseppi/angular-dropdowns.git"
-    },
-    "devDependencies": {
-        "coffee-script": "~1.6.1",
-        "grunt": "~0.4.0",
-        "grunt-cli": "~0.1.7",
-        "grunt-contrib-clean": "~0.4.0",
-        "grunt-contrib-coffee": "~0.6.0",
-        "grunt-contrib-copy": "~0.4.0",
-        "grunt-contrib-watch": "~0.3.1",
-        "grunt-karma": "~0.4.3"
-    },
-    "engines": {
-        "node": "0.8.x",
-        "npm": "1.1.x"
+  "name": "angular-dropdowns",
+  "version": "0.0.0",
+  "author": {
+    "name": "James Seppi",
+    "url": "http://www.github.com/jseppi"
+  },
+  "description": "AngularJS Dropdown Directives",
+  "contributors": [
+    {
+      "name": "James Seppi",
+      "email": "james.seppi@gmail.com",
+      "url": "https://github.com/jseppi"
     }
+  ],
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/jseppi/angular-dropdowns.git"
+  },
+  "devDependencies": {
+    "coffee-script": "~1.6.1",
+    "grunt": "~0.4.0",
+    "grunt-cli": "~0.1.7",
+    "grunt-contrib-clean": "~0.4.0",
+    "grunt-contrib-coffee": "~0.6.0",
+    "grunt-contrib-copy": "~0.4.1",
+    "grunt-contrib-watch": "~0.3.1",
+    "grunt-karma": "~0.4.3",
+    "grunt-contrib-uglify": "~0.2.2"
+  },
+  "engines": {
+    "node": "0.8.x",
+    "npm": "1.1.x"
+  }
 }

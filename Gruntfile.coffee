@@ -27,14 +27,34 @@ module.exports = (grunt) ->
           # For more information on IIFEs, please visit http://benalman.com/news/2010/11/immediately-invoked-function-expression/
           bare: true
 
+    # Copy dropdowns.js to the dist folder
+    copy:
+      dist:
+        files: [
+          {
+            src: ['./scripts/dropdowns.js']
+            dest: './dist/angular-dropdowns.js'
+            filter: 'isFile'
+          }
+        ]
+
+    uglify:
+      dist:
+        options: {
+          #beautify: true
+        }
+        files: {
+          './dist/angular-dropdowns.min.js': ['./dist/angular-dropdowns.js']
+        }
+
     # Runs unit tests using karma
     karma:
       unit:
         options:
           autoWatch: true
-          browsers: ['PhantomJS']
+          browsers: ['Chrome']
           colors: true
-          configFile: './Scripts/Compiled/ngMapApp/test/karma-conf.js'
+          configFile: './test/karma-conf.js'
           port: 8081
           reporters: ['progress']
           runnerPort: 9100
@@ -54,6 +74,8 @@ module.exports = (grunt) ->
   grunt.loadNpmTasks 'grunt-contrib-clean'
   grunt.loadNpmTasks 'grunt-contrib-coffee'
   grunt.loadNpmTasks 'grunt-contrib-watch'
+  grunt.loadNpmTasks 'grunt-contrib-copy'
+  grunt.loadNpmTasks 'grunt-contrib-uglify'
 
   # Register grunt tasks supplied by grunt-karma.
   # Referenced in package.json.
@@ -74,6 +96,8 @@ module.exports = (grunt) ->
   # grunt
   grunt.registerTask 'default', [
     'coffee:src'
+    'copy:dist'
+    'uglify:dist'
   ]
 
 
