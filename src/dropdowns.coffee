@@ -7,11 +7,11 @@ angular.module('ngDropdowns', [])
         scope:
             dropdownSelect: '='
             dropdownModel: '='
-        
+
         controller: ['$scope', '$element', '$attrs', ($scope, $element, $attrs) ->
 
             $scope.labelField = if $attrs.dropdownItemLabel? then $attrs.dropdownItemLabel else 'text'
-            
+
             this.select = (selected) ->
                 angular.copy(selected, $scope.dropdownModel)
                 return
@@ -43,7 +43,7 @@ angular.module('ngDropdowns', [])
                 </ul>
             </div>
             """
-    }               
+    }
 ])
 .directive('dropdownSelectItem', [() ->
     return {
@@ -54,7 +54,7 @@ angular.module('ngDropdowns', [])
             dropdownSelectItem: '='
 
         link: (scope, element, attrs, dropdownSelectCtrl) ->
-            
+
             scope.selectItem = () ->
                 return if scope.dropdownSelectItem.href
                 dropdownSelectCtrl.select scope.dropdownSelectItem
@@ -64,8 +64,8 @@ angular.module('ngDropdowns', [])
 
         template: """
             <li ng-class='{divider: dropdownSelectItem.divider}'>
-                <a href='' 
-                    ng-if='!dropdownSelectItem.divider' 
+                <a href='' class='dropdown-item'
+                    ng-if='!dropdownSelectItem.divider'
                     ng-href='{{dropdownSelectItem.href}}'
                     ng-click='selectItem()'>
                     {{dropdownSelectItem[dropdownItemLabel]}}
@@ -75,7 +75,7 @@ angular.module('ngDropdowns', [])
 
 ])
 .directive('dropdownMenu', ['$parse', '$compile', '$document', ($parse, $compile, $document) ->
-    
+
     template = """
         <ul class='dropdown'>
             <li ng-repeat='item in dropdownMenu'
@@ -104,7 +104,7 @@ angular.module('ngDropdowns', [])
             tpl = $compile($template)($scope)
 
             $wrap = angular.element("<div class='wrap-dd-menu'></div>")
-            
+
             $element.replaceWith($wrap)
 
             $wrap.append($element)
@@ -146,11 +146,11 @@ angular.module('ngDropdowns', [])
                 return
 
             return
-        
+
         template: """
             <li ng-class='{divider: dropdownMenuItem.divider}'>
-                <a href='' 
-                    ng-if='!dropdownMenuItem.divider' 
+                <a href='' class='dropdown-item'
+                    ng-if='!dropdownMenuItem.divider'
                     ng-href='{{dropdownMenuItem.href}}'
                     ng-click='selectItem()'>
                     {{dropdownMenuItem[dropdownItemLabel]}}
