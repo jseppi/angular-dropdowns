@@ -25,7 +25,7 @@ angular.module('ngDropdowns', []).directive('dropdownSelect', [
           });
         }
       ],
-      template: "<div class='wrap-dd-select'>\n    <span class='selected'>{{dropdownModel.text}}</span>\n    <ul class='dropdown'>\n        <li ng-repeat='item in dropdownSelect'\n            dropdown-select-item='item'\n            dropdown-item-label='labelField'>\n        </li>\n    </ul>\n</div>"
+      template: "<div class='wrap-dd-select'>\n    <span class='selected'>{{dropdownModel[labelField]}}</span>\n    <ul class='dropdown'>\n        <li ng-repeat='item in dropdownSelect'\n            dropdown-select-item='item'\n            dropdown-item-label='labelField'>\n        </li>\n    </ul>\n</div>"
     };
   }
 ]).directive('dropdownSelectItem', [
