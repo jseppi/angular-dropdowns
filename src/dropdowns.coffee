@@ -1,4 +1,3 @@
-
 angular.module('ngDropdowns', [])
 .directive('dropdownSelect', ['$document', ($document) ->
     return {
@@ -34,7 +33,7 @@ angular.module('ngDropdowns', [])
         template:
             """
             <div class='wrap-dd-select'>
-                <span class='selected'>{{dropdownModel.text}}</span>
+                <span class='selected'>{{dropdownModel[labelField]}}</span>
                 <ul class='dropdown'>
                     <li ng-repeat='item in dropdownSelect'
                         dropdown-select-item='item'
