@@ -81,3 +81,9 @@ For a menu-style dropdown, use `dropdown-menu` in place of `dropdown-select`:
 -------------
 
 Styling based on http://tympanus.net/codrops/2012/10/04/custom-drop-down-list-styling/
+
+-------------
+
+License
+---------
+[MIT](http://jseppi.mit-license.org/license.html)
