@@ -5,15 +5,18 @@ angular.module('ngDropdowns', []).directive('dropdownSelect', [
       replace: true,
       scope: {
         dropdownSelect: '=',
-        dropdownModel: '='
+        dropdownModel: '=',
+        dropdownOnchange: '&'
       },
       controller: [
         '$scope', '$element', '$attrs', function($scope, $element, $attrs) {
           var body;
-
           $scope.labelField = $attrs.dropdownItemLabel != null ? $attrs.dropdownItemLabel : 'text';
           this.select = function(selected) {
             angular.copy(selected, $scope.dropdownModel);
+            $scope.dropdownOnchange({
+              selected: selected
+            });
           };
           body = $document.find("body");
           body.bind("click", function() {
@@ -51,19 +54,18 @@ angular.module('ngDropdowns', []).directive('dropdownSelect', [
 ]).directive('dropdownMenu', [
   '$parse', '$compile', '$document', function($parse, $compile, $document) {
     var template;
-
     template = "<ul class='dropdown'>\n    <li ng-repeat='item in dropdownMenu'\n        dropdown-item-label='labelField'\n        dropdown-menu-item='item'></li>\n    </li>\n</ul>";
     return {
       restrict: 'A',
       replace: false,
       scope: {
         dropdownMenu: '=',
-        dropdownModel: '='
+        dropdownModel: '=',
+        dropdownOnchange: '&'
       },
       controller: [
         '$scope', '$element', '$attrs', function($scope, $element, $attrs) {
           var $template, $wrap, body, tpl;
-
           $scope.labelField = $attrs.dropdownItemLabel != null ? $attrs.dropdownItemLabel : 'text';
           $template = angular.element(template);
           $template.data('$dropdownMenuController', this);
@@ -74,6 +76,9 @@ angular.module('ngDropdowns', []).directive('dropdownSelect', [
           $wrap.append(tpl);
           this.select = function(selected) {
             angular.copy(selected, $scope.dropdownModel);
+            $scope.dropdownOnchange({
+              selected: selected
+            });
           };
           body = $document.find("body");
           body.bind("click", function() {
