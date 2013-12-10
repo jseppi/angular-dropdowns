@@ -6,6 +6,7 @@ angular.module('ngDropdowns', [])
         scope:
             dropdownSelect: '='
             dropdownModel: '='
+            dropdownOnchange: '&'
 
         controller: ['$scope', '$element', '$attrs', ($scope, $element, $attrs) ->
 
@@ -13,6 +14,7 @@ angular.module('ngDropdowns', [])
 
             this.select = (selected) ->
                 angular.copy(selected, $scope.dropdownModel)
+                $scope.dropdownOnchange({ selected: selected })
                 return
 
             body = $document.find("body")
@@ -90,6 +92,7 @@ angular.module('ngDropdowns', [])
         scope:
             dropdownMenu: '='
             dropdownModel: '='
+            dropdownOnchange: '&'
 
         controller: ['$scope', '$element', '$attrs', ($scope, $element, $attrs) ->
 
@@ -111,6 +114,7 @@ angular.module('ngDropdowns', [])
 
             this.select = (selected) ->
                 angular.copy(selected, $scope.dropdownModel)
+                $scope.dropdownOnchange({ selected: selected })
                 return
 
             body = $document.find("body")
