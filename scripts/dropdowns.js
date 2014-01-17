@@ -28,7 +28,7 @@ angular.module('ngDropdowns', []).directive('dropdownSelect', [
           });
         }
       ],
-      template: "<div class='wrap-dd-select'>\n    <span class='selected'>{{dropdownModel[labelField]}}</span>\n    <ul class='dropdown'>\n        <li ng-repeat='item in dropdownSelect'\n            dropdown-select-item='item'\n            dropdown-item-label='labelField'>\n        </li>\n    </ul>\n</div>"
+      template: "<div class='wrap-dd-select'>\n    <span class='selected'>{{dropdownModel[labelField]}}</span>\n    <ul class='dropdown'>\n        <li ng-repeat='item in dropdownSelect'\n            class='dropdown-item'\n            dropdown-select-item='item'\n            dropdown-item-label='labelField'>\n        </li>\n    </ul>\n</div>"
     };
   }
 ]).directive('dropdownSelectItem', [
@@ -54,7 +54,7 @@ angular.module('ngDropdowns', []).directive('dropdownSelect', [
 ]).directive('dropdownMenu', [
   '$parse', '$compile', '$document', function($parse, $compile, $document) {
     var template;
-    template = "<ul class='dropdown'>\n    <li ng-repeat='item in dropdownMenu'\n        dropdown-item-label='labelField'\n        dropdown-menu-item='item'></li>\n    </li>\n</ul>";
+    template = "<ul class='dropdown'>\n    <li ng-repeat='item in dropdownMenu'\n        class='dropdown-item'\n        dropdown-item-label='labelField'\n        dropdown-menu-item='item'>\n    </li>\n</ul>";
     return {
       restrict: 'A',
       replace: false,

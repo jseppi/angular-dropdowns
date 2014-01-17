@@ -38,6 +38,7 @@ angular.module('ngDropdowns', [])
                 <span class='selected'>{{dropdownModel[labelField]}}</span>
                 <ul class='dropdown'>
                     <li ng-repeat='item in dropdownSelect'
+                        class='dropdown-item'
                         dropdown-select-item='item'
                         dropdown-item-label='labelField'>
                     </li>
@@ -80,8 +81,9 @@ angular.module('ngDropdowns', [])
     template = """
         <ul class='dropdown'>
             <li ng-repeat='item in dropdownMenu'
+                class='dropdown-item'
                 dropdown-item-label='labelField'
-                dropdown-menu-item='item'></li>
+                dropdown-menu-item='item'>
             </li>
         </ul>
         """
