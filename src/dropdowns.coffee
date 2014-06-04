@@ -13,7 +13,8 @@ angular.module('ngDropdowns', [])
             $scope.labelField = if $attrs.dropdownItemLabel? then $attrs.dropdownItemLabel else 'text'
 
             this.select = (selected) ->
-                angular.copy(selected, $scope.dropdownModel)
+                if selected != $scope.dropdownModel
+                    angular.copy(selected, $scope.dropdownModel)
                 $scope.dropdownOnchange({ selected: selected })
                 return
 
@@ -115,7 +116,8 @@ angular.module('ngDropdowns', [])
             $wrap.append(tpl)
 
             this.select = (selected) ->
-                angular.copy(selected, $scope.dropdownModel)
+                if selected != $scope.dropdownModel
+                    angular.copy(selected, $scope.dropdownModel)
                 $scope.dropdownOnchange({ selected: selected })
                 return
 

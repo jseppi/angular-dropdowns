@@ -13,7 +13,9 @@ angular.module('ngDropdowns', []).directive('dropdownSelect', [
           var body;
           $scope.labelField = $attrs.dropdownItemLabel != null ? $attrs.dropdownItemLabel : 'text';
           this.select = function(selected) {
-            angular.copy(selected, $scope.dropdownModel);
+            if (selected !== $scope.dropdownModel) {
+              angular.copy(selected, $scope.dropdownModel);
+            }
             $scope.dropdownOnchange({
               selected: selected
             });
@@ -75,7 +77,9 @@ angular.module('ngDropdowns', []).directive('dropdownSelect', [
           $wrap.append($element);
           $wrap.append(tpl);
           this.select = function(selected) {
-            angular.copy(selected, $scope.dropdownModel);
+            if (selected !== $scope.dropdownModel) {
+              angular.copy(selected, $scope.dropdownModel);
+            }
             $scope.dropdownOnchange({
               selected: selected
             });
