@@ -1,7 +1,7 @@
 angular-dropdowns
 =================
 
-Dropdown directives for AngularJS (Version 1.1.5).
+Dropdown directives for AngularJS (1.1.5, 1.2.x).
 
 Includes both a select-style dropdown and a menu-style dropdown.  The menu-style dropdown attaches to an existing element (button, link, div, etc), whereas the select-style dropdown replaces the element it is attached to.
 
