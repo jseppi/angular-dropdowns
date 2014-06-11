@@ -111,5 +111,3 @@ Credits
 -------------
 Styling based on http://tympanus.net/codrops/2012/10/04/custom-drop-down-list-styling/
 
-[![Bitdeli Badge](https://d2weczhvl823v0.cloudfront.net/jseppi/angular-dropdowns/trend.png)](https://bitdeli.com/free "Bitdeli Badge")
-
