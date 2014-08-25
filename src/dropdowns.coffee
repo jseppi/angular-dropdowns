@@ -1,5 +1,5 @@
 angular.module('ngDropdowns', [])
-.directive('dropdownSelect', ['$document', ($document) ->
+.directive('dropdownSelect', ['DropdownService', (DropdownService) ->
     return {
         restrict: 'A'
         replace: true
@@ -12,21 +12,22 @@ angular.module('ngDropdowns', [])
 
             $scope.labelField = if $attrs.dropdownItemLabel? then $attrs.dropdownItemLabel else 'text'
 
+            DropdownService.register($element)
+
             this.select = (selected) ->
                 if selected != $scope.dropdownModel
                     angular.copy(selected, $scope.dropdownModel)
                 $scope.dropdownOnchange({ selected: selected })
                 return
 
-            body = $document.find("body")
-            body.bind("click", () ->
-                $element.removeClass('active')
+            $element.bind('click', (event) ->
+                event.stopPropagation()
+                DropdownService.toggleActive($element)
                 return
             )
 
-            $element.bind('click', (event) ->
-                event.stopPropagation()
-                $element.toggleClass('active')
+            $scope.$on('$destroy', () ->
+                DropdownService.unregister($element)
                 return
             )
 
@@ -77,7 +78,7 @@ angular.module('ngDropdowns', [])
     }
 
 ])
-.directive('dropdownMenu', ['$parse', '$compile', '$document', ($parse, $compile, $document) ->
+.directive('dropdownMenu', ['$parse', '$compile', 'DropdownService', ($parse, $compile, DropdownService) ->
 
     template = """
         <ul class='dropdown'>
@@ -98,7 +99,6 @@ angular.module('ngDropdowns', [])
             dropdownOnchange: '&'
 
         controller: ['$scope', '$element', '$attrs', ($scope, $element, $attrs) ->
-
             $scope.labelField = if $attrs.dropdownItemLabel? then $attrs.dropdownItemLabel else 'text'
 
             $template = angular.element(template)
@@ -115,21 +115,22 @@ angular.module('ngDropdowns', [])
             $wrap.append($element)
             $wrap.append(tpl)
 
+            DropdownService.register(tpl)
+
             this.select = (selected) ->
                 if selected != $scope.dropdownModel
                     angular.copy(selected, $scope.dropdownModel)
                 $scope.dropdownOnchange({ selected: selected })
                 return
 
-            body = $document.find("body")
-            body.bind("click", () ->
-                tpl.removeClass('active')
+            $element.bind("click", (event) ->
+                event.stopPropagation()
+                DropdownService.toggleActive(tpl)
                 return
             )
 
-            $element.bind("click", (event) ->
-                event.stopPropagation()
-                tpl.toggleClass('active')
+            $scope.$on('$destroy', () ->
+                DropdownService.unregister(tpl)
                 return
             )
 
@@ -164,5 +165,36 @@ angular.module('ngDropdowns', [])
                 </a>
             </li>"""
     }
+])
+.factory('DropdownService', ['$document', ($document) ->
+    service = {}
 
+    _dropdowns = []
+
+    body = $document.find('body')
+    body.bind('click', () ->
+        angular.forEach(_dropdowns, (el) ->
+            el.removeClass('active')
+            return
+        )
+    )
+
+    service.register = (ddEl) ->
+        _dropdowns.push ddEl
+        return
+
+    service.unregister = (ddEl) ->
+        index = _dropdowns.indexOf(ddEl)
+        _dropdowns.splice(index, -1) if index > -1
+        return
+
+    service.toggleActive = (ddEl) ->
+        angular.forEach(_dropdowns, (el) ->
+            el.removeClass('active') if el isnt ddEl
+            return
+        )
+        ddEl.toggleClass('active')
+        return
+
+    return service
 ])
