@@ -133,7 +133,7 @@ angular.module('ngDropdowns', []).directive('dropdownSelect', [
       var index;
       index = _dropdowns.indexOf(ddEl);
       if (index > -1) {
-        _dropdowns.splice(index, -1);
+        _dropdowns.splice(index, 1);
       }
     };
     service.toggleActive = function(ddEl) {

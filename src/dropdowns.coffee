@@ -185,7 +185,7 @@ angular.module('ngDropdowns', [])
 
     service.unregister = (ddEl) ->
         index = _dropdowns.indexOf(ddEl)
-        _dropdowns.splice(index, -1) if index > -1
+        _dropdowns.splice(index, 1) if index > -1
         return
 
     service.toggleActive = (ddEl) ->
