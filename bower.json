@@ -1,6 +1,6 @@
 {
   "name": "angular-dropdowns",
-  "version": "0.2.1",
+  "version": "0.3.0",
   "homepage": "https://github.com/jseppi/angular-dropdowns",
   "authors": [
     "James Seppi"
@@ -8,7 +8,7 @@
   "description": "AngularJS Dropdown Directives",
   "main": [
     "dist/angular-dropdowns.js",
-    "css/dropdowns.css"
+    "dist/angular-dropdowns.css"
   ],
   "keywords": [
     "angular",
