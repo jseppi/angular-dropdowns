@@ -1,3 +1,5 @@
+var __indexOf = [].indexOf || function(item) { for (var i = 0, l = this.length; i < l; i++) { if (i in this && this[i] === item) return i; } return -1; };
+
 angular.module('ngDropdowns', []).directive('dropdownSelect', [
   'DropdownService', function(DropdownService) {
     return {
@@ -53,7 +55,7 @@ angular.module('ngDropdowns', []).directive('dropdownSelect', [
     };
   }
 ]).directive('dropdownMenu', [
-  '$parse', '$compile', 'DropdownService', function($parse, $compile, DropdownService) {
+  '$parse', '$compile', 'DropdownService', '$window', function($parse, $compile, DropdownService, $window) {
     var template;
     template = "<ul class='dropdown'>\n    <li ng-repeat='item in dropdownMenu'\n        class='dropdown-item'\n        dropdown-item-label='labelField'\n        dropdown-menu-item='item'>\n    </li>\n</ul>";
     return {
@@ -66,8 +68,9 @@ angular.module('ngDropdowns', []).directive('dropdownSelect', [
       },
       controller: [
         '$scope', '$element', '$attrs', function($scope, $element, $attrs) {
-          var $template, $wrap, tpl;
+          var $clickEvent, $template, $wrap, tpl;
           $scope.labelField = $attrs.dropdownItemLabel != null ? $attrs.dropdownItemLabel : 'text';
+          $clickEvent = !!(__indexOf.call($window, 'ontouchstart') >= 0) ? 'touchend' : 'click';
           $template = angular.element(template);
           $template.data('$dropdownMenuController', this);
           tpl = $compile($template)($scope);
@@ -84,7 +87,7 @@ angular.module('ngDropdowns', []).directive('dropdownSelect', [
               selected: selected
             });
           };
-          $element.bind("click", function(event) {
+          $element.bind($clickEvent, function(event) {
             event.stopPropagation();
             DropdownService.toggleActive(tpl);
           });

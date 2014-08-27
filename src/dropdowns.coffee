@@ -78,7 +78,7 @@ angular.module('ngDropdowns', [])
     }
 
 ])
-.directive('dropdownMenu', ['$parse', '$compile', 'DropdownService', ($parse, $compile, DropdownService) ->
+.directive('dropdownMenu', ['$parse', '$compile', 'DropdownService', '$window', ($parse, $compile, DropdownService, $window) ->
 
     template = """
         <ul class='dropdown'>
@@ -100,7 +100,7 @@ angular.module('ngDropdowns', [])
 
         controller: ['$scope', '$element', '$attrs', ($scope, $element, $attrs) ->
             $scope.labelField = if $attrs.dropdownItemLabel? then $attrs.dropdownItemLabel else 'text'
-
+            $clickEvent = if !!('ontouchstart' in $window) then 'touchend' else 'click'
             $template = angular.element(template)
 
             #Attach this controller to the element's data
@@ -123,7 +123,7 @@ angular.module('ngDropdowns', [])
                 $scope.dropdownOnchange({ selected: selected })
                 return
 
-            $element.bind("click", (event) ->
+            $element.bind($clickEvent, (event) ->
                 event.stopPropagation()
                 DropdownService.toggleActive(tpl)
                 return
