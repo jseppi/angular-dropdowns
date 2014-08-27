@@ -1,6 +1,6 @@
 {
   "name": "angular-dropdowns",
-  "version": "0.2.1",
+  "version": "0.3.0",
   "author": {
     "name": "James Seppi",
     "url": "http://www.github.com/jseppi"
@@ -18,18 +18,17 @@
     "url": "https://github.com/jseppi/angular-dropdowns.git"
   },
   "devDependencies": {
-    "coffee-script": "~1.6.1",
-    "grunt": "~0.4.0",
-    "grunt-cli": "~0.1.7",
-    "grunt-contrib-clean": "~0.4.0",
-    "grunt-contrib-coffee": "~0.6.0",
-    "grunt-contrib-copy": "~0.4.1",
-    "grunt-contrib-watch": "~0.3.1",
-    "grunt-karma": "~0.4.3",
-    "grunt-contrib-uglify": "~0.2.2"
+    "gulp": "^3.8.7",
+    "gulp-jshint": "^1.8.4",
+    "gulp-karma": "0.0.4",
+    "gulp-rename": "^1.2.0",
+    "gulp-rimraf": "^0.1.0",
+    "gulp-uglify": "^0.3.2",
+    "jshint-stylish": "^0.4.0",
+    "karma": "^0.12.22"
   },
   "engines": {
-    "node": "0.8.x",
-    "npm": "1.1.x"
+    "node": "0.10.x",
+    "npm": "1.4.x"
   }
 }

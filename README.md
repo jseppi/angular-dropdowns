@@ -1,14 +1,12 @@
-angular-dropdowns
-=================
+# angular-dropdowns
 
-Dropdown directives for AngularJS (1.1.5, 1.2.x).
+Dropdown directives for AngularJS (1.1.5+, 1.2.x).
 
 Includes both a select-style dropdown and a menu-style dropdown.  The menu-style dropdown attaches to an existing element (button, link, div, etc), whereas the select-style dropdown replaces the element it is attached to.
 
 See examples: http://jsfiddle.net/jseppi/cTzun/3/embedded/result/
 
-Usage
------
+## Usage
 
 Include `ngDropdowns` in your module dependencies:
 
@@ -96,19 +94,25 @@ You can specify a function to call upon dropdown value change by specifying the 
 </div>
 ```
 
-Contributors
----------
+## Contributors
+
 * [@jseppi](http://github.com/jseppi)
 * [@alexisbg](http://github.com/alexisbg)
 * [@elishacook](http://github.com/elishacook)
 * [@dinodsaurus](https://github.com/dinodsaurus)
 
-License
----------
+## Developing
+
+Pull requests are welcome!
+
+Run `npm install` to get all the development dependencies.
+
+Run `gulp` to build the output files.
+
+## License
+
 [MIT](http://jseppi.mit-license.org/license.html)
 
+## Credits
 
-Credits
--------------
 Styling based on http://tympanus.net/codrops/2012/10/04/custom-drop-down-list-styling/
-

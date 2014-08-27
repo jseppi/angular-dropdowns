@@ -1,6 +1,6 @@
-var app;
+'use strict';
 
-app = angular.module('app', ['ngDropdowns']);
+var app = angular.module('app', ['ngDropdowns']);
 
 app.controller('AppCtrl', function($scope) {
   $scope.ddSelectOptions = [
@@ -18,9 +18,11 @@ app.controller('AppCtrl', function($scope) {
       href: 'http://www.google.com'
     }
   ];
+
   $scope.ddSelectSelected = {
     text: "Select an Option"
   };
+
   $scope.ddMenuOptions = [
     {
       text: 'Option1',
@@ -34,6 +36,7 @@ app.controller('AppCtrl', function($scope) {
       href: 'http://www.google.com'
     }
   ];
+
   $scope.ddMenuSelected = {};
   $scope.ddMenuOptions2 = [
     {
@@ -48,6 +51,7 @@ app.controller('AppCtrl', function($scope) {
       href: 'http://www.google.com'
     }
   ];
+
   $scope.ddMenuSelected2 = {};
   $scope.ddMenuOptions3 = [
     {
@@ -62,5 +66,6 @@ app.controller('AppCtrl', function($scope) {
       href: 'http://www.google.com'
     }
   ];
-  return $scope.ddMenuSelected3 = {};
+
+  $scope.ddMenuSelected3 = {};
 });

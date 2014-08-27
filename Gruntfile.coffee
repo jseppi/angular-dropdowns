@@ -2,16 +2,7 @@ path = require 'path'
 
 # Build configurations.
 module.exports = (grunt) ->
-  grunt.initConfig
-    # Deletes Compiled script directory
-    # These directories should be deleted before subsequent builds.
-    # These directories are not committed to source control.
-    clean:
-      working:
-        scripts: [
-          './scripts/*'
-        ]
-      
+  grunt.initConfig      
     # Compile CoffeeScript (.coffee) files to JavaScript (.js).
     coffee:
       src:
@@ -71,8 +62,6 @@ module.exports = (grunt) ->
   # Register grunt tasks supplied by grunt-contrib-*.
   # Referenced in package.json.
   # https://github.com/gruntjs/grunt-contrib
-  grunt.loadNpmTasks 'grunt-contrib-clean'
-  grunt.loadNpmTasks 'grunt-contrib-coffee'
   grunt.loadNpmTasks 'grunt-contrib-watch'
   grunt.loadNpmTasks 'grunt-contrib-copy'
   grunt.loadNpmTasks 'grunt-contrib-uglify'
@@ -86,7 +75,6 @@ module.exports = (grunt) ->
   # Enter the following command at the command line to execute this build task:
   # grunt test
   grunt.registerTask 'test', [
-    'clean:working'
     'default'
     'karma'
   ]
@@ -95,16 +83,6 @@ module.exports = (grunt) ->
   # Enter the following command at the command line to execute this build task:
   # grunt
   grunt.registerTask 'default', [
-    'coffee:src'
     'copy:dist'
     'uglify:dist'
-  ]
-
-
-  # Compiles the app with non-optimized build settings and watches changes.
-  # Enter the following command at the command line to execute this build task:
-  # grunt dev
-  grunt.registerTask 'dev', [
-    'coffee:src'
-    'watch'
   ]
