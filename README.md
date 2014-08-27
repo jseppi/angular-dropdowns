@@ -101,6 +101,7 @@ Contributors
 * [@jseppi](http://github.com/jseppi)
 * [@alexisbg](http://github.com/alexisbg)
 * [@elishacook](http://github.com/elishacook)
+* [@dinodsaurus](https://github.com/dinodsaurus)
 
 License
 ---------
