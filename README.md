@@ -101,6 +101,14 @@ You can specify a function to call upon dropdown value change by specifying the 
 * [@elishacook](http://github.com/elishacook)
 * [@dinodsaurus](https://github.com/dinodsaurus)
 
+## Developing
+
+Pull requests are welcome!
+
+Run `npm install` to get all the development dependencies.
+
+Run `gulp` to build the output files.
+
 ## License
 
 [MIT](http://jseppi.mit-license.org/license.html)
