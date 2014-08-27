@@ -15,5 +15,6 @@
     "dropdown",
     "select"
   ],
+  "ignore": ["example"],
   "license": "MIT"
 }
