@@ -56,13 +56,11 @@ You can optionally set `dropdown-item-label` to specify a different label field 
 
 ```html
 <div ng-controller="AppCtrl">
-    <div>
-        <h1>Dropdown Select</h1>
-        <p>You have selected: {{ddSelectSelected}}</p>
-        <div dropdown-select="ddSelectOptions"
-            dropdown-model="ddSelectSelected"
-            dropdown-item-label="text" >
-        </div>
+    <h1>Dropdown Select</h1>
+    <p>You have selected: {{ddSelectSelected}}</p>
+    <div dropdown-select="ddSelectOptions"
+        dropdown-model="ddSelectSelected"
+        dropdown-item-label="text" >
     </div>
 </div>
 ```
@@ -71,16 +69,14 @@ For a menu-style dropdown, use `dropdown-menu` in place of `dropdown-select`:
 
 ```html
 <div ng-controller="AppCtrl">
-    <div>
-        <h1>Dropdown Select</h1>
-        <p>You have selected: {{ddSelectSelected}}</p>
-        <a href='' title=''
-            dropdown-menu="ddSelectOptions"
-            dropdown-model="ddSelectSelected"
-            dropdown-item-label="text">
-            Menu
-        </a>
-    </div>
+    <h1>Dropdown Select</h1>
+    <p>You have selected: {{ddSelectSelected}}</p>
+    <a href='' title=''
+        dropdown-menu="ddSelectOptions"
+        dropdown-model="ddSelectSelected"
+        dropdown-item-label="text">
+        Menu
+    </a>
 </div>
 ```
 
