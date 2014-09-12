@@ -6,6 +6,7 @@
     "url": "http://www.github.com/jseppi"
   },
   "description": "AngularJS Dropdown Directives",
+  "license": "MIT",
   "contributors": [
     {
       "name": "James Seppi",
