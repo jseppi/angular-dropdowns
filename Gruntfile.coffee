@@ -2,7 +2,7 @@ path = require 'path'
 
 # Build configurations.
 module.exports = (grunt) ->
-  grunt.initConfig      
+  grunt.initConfig
     # Compile CoffeeScript (.coffee) files to JavaScript (.js).
     coffee:
       src:
@@ -22,11 +22,9 @@ module.exports = (grunt) ->
     copy:
       dist:
         files: [
-          {
-            src: ['./scripts/dropdowns.js']
-            dest: './dist/angular-dropdowns.js'
-            filter: 'isFile'
-          }
+          src: ['./scripts/dropdowns.js']
+          dest: './dist/angular-dropdowns.js'
+          filter: 'isFile'
         ]
 
     uglify:
