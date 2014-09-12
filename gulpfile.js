@@ -37,5 +37,5 @@ gulp.task('uglify', function () {
 
 gulp.task('clean', function () {
   return gulp.src(distDir)
-  	.pipe(rimraf());
+    .pipe(rimraf());
 });
