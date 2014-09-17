@@ -1,23 +1,30 @@
 {
   "name": "angular-dropdowns",
-  "version": "0.3.0",
+  "version": "0.3.1",
   "author": {
     "name": "James Seppi",
+    "email": "james.seppi@gmail.com",
     "url": "http://www.github.com/jseppi"
   },
+  "homepage": "https://github.com/jseppi/angular-dropdowns",
+  "bugs": "https://github.com/jseppi/angular-dropdowns/issues",
+  "keywords": ["angular", "dropdown", "menu", "select"],
   "description": "AngularJS Dropdown Directives",
   "license": "MIT",
   "contributors": [
-    {
-      "name": "James Seppi",
-      "email": "james.seppi@gmail.com",
-      "url": "https://github.com/jseppi"
-    }
+    "eddimonge",
+    "JustMaier",
+    "ramiroaraujo",
+    "tlvince",
+    "dinodsaurus",
+    "elishacook",
+    "alexisbg"
   ],
   "repository": {
     "type": "git",
     "url": "https://github.com/jseppi/angular-dropdowns.git"
   },
+  "dependencies": {},
   "devDependencies": {
     "gulp": "^3.8.7",
     "gulp-jshint": "^1.8.4",

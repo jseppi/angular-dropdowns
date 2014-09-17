@@ -90,13 +90,6 @@ You can specify a function to call upon dropdown value change by specifying the 
 </div>
 ```
 
-## Contributors
-
-* [@jseppi](http://github.com/jseppi)
-* [@alexisbg](http://github.com/alexisbg)
-* [@elishacook](http://github.com/elishacook)
-* [@dinodsaurus](https://github.com/dinodsaurus)
-
 ## Developing
 
 Pull requests are welcome!
