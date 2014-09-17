@@ -40,16 +40,18 @@ dd.directive('dropdownSelect', ['DropdownService', '$window',
         });
       }],
 
-      template: "<div class='wrap-dd-select'>" +
-        "    <span class='selected'>{{dropdownModel[labelField]}}</span>" +
-        "    <ul class='dropdown'>" +
-        "        <li ng-repeat='item in dropdownSelect'" +
-        "            class='dropdown-item'" +
-        "            dropdown-select-item='item'" +
-        "            dropdown-item-label='labelField'>" +
-        "        </li>" +
-        "    </ul>" +
-        "</div>"
+      template: [
+        '<div class="wrap-dd-select">',
+          '<span class="selected">{{dropdownModel[labelField]}}</span>',
+          '<ul class="dropdown">',
+            '<li ng-repeat="item in dropdownSelect"',
+            ' class="dropdown-item"',
+            ' dropdown-select-item="item"',
+            ' dropdown-item-label="labelField">',
+            '</li>',
+          '</ul>',
+        '</div>'
+      ].join('')
     };
   }
 ]);
@@ -73,29 +75,22 @@ dd.directive('dropdownSelectItem', [
         };
       },
 
-      template: "<li ng-class='{divider: dropdownSelectItem.divider}'>" +
-        "    <a href='' class='dropdown-item'" +
-        "        ng-if='!dropdownSelectItem.divider'" +
-        "        ng-href='{{dropdownSelectItem.href}}'" +
-        "        ng-click='selectItem()'>" +
-        "        {{dropdownSelectItem[dropdownItemLabel]}}" +
-        "    </a>" +
-        "</li>"
+      template: [
+        '<li ng-class="{divider: dropdownSelectItem.divider}">',
+          '<a href="" class="dropdown-item"',
+          ' ng-if="!dropdownSelectItem.divider"',
+          ' ng-href="{{dropdownSelectItem.href}}"',
+          ' ng-click="selectItem()">',
+            '{{dropdownSelectItem[dropdownItemLabel]}}',
+          '</a>',
+        '</li>'
+      ].join('')
     };
   }
 ]);
 
 dd.directive('dropdownMenu', ['$parse', '$compile', 'DropdownService', '$window',
   function ($parse, $compile, DropdownService, $window) {
-
-    var template = "<ul class='dropdown'>" +
-      "    <li ng-repeat='item in dropdownMenu'" +
-      "        class='dropdown-item'" +
-      "        dropdown-item-label='labelField'" +
-      "        dropdown-menu-item='item'>" +
-      "    </li>" +
-      "</ul>";
-
     return {
       restrict: 'A',
       replace: false,
@@ -109,12 +104,20 @@ dd.directive('dropdownMenu', ['$parse', '$compile', 'DropdownService', '$window'
         $scope.labelField = $attrs.dropdownItemLabel || 'text';
 
         var $clickEvent = ('ontouchstart' in $window ? 'touchend' : 'click');
-        var $template = angular.element(template);
+        var $template = angular.element([
+          '<ul class="dropdown">',
+            '<li ng-repeat="item in dropdownMenu"',
+            ' class="dropdown-item"',
+            ' dropdown-item-label="labelField"',
+            ' dropdown-menu-item="item">',
+            '</li>',
+          '</ul>'
+        ].join(''));
         // Attach this controller to the element's data
         $template.data('$dropdownMenuController', this);
 
         var tpl = $compile($template)($scope);
-        var $wrap = angular.element("<div class='wrap-dd-menu'></div>");
+        var $wrap = angular.element('<div class="wrap-dd-menu"></div>');
 
         $element.replaceWith($wrap);
         $wrap.append($element);
@@ -163,14 +166,16 @@ dd.directive('dropdownMenuItem', [
         };
       },
 
-      template: "<li ng-class='{divider: dropdownMenuItem.divider}'>" +
-        "    <a href='' class='dropdown-item'" +
-        "        ng-if='!dropdownMenuItem.divider'" +
-        "        ng-href='{{dropdownMenuItem.href}}'" +
-        "        ng-click='selectItem()'>" +
-        "        {{dropdownMenuItem[dropdownItemLabel]}}" +
-        "    </a>" +
-        "</li>"
+      template: [
+        '<li ng-class="{divider: dropdownMenuItem.divider}">',
+          '<a href="" class="dropdown-item"',
+          ' ng-if="!dropdownMenuItem.divider"',
+          ' ng-href="{{dropdownMenuItem.href}}"',
+          ' ng-click="selectItem()">',
+            '{{dropdownMenuItem[dropdownItemLabel]}}',
+          '</a>',
+        '</li>'
+      ].join('')
     };
   }
 ]);
@@ -182,7 +187,7 @@ dd.factory('DropdownService', ['$document',
         _dropdowns = [];
 
     body.bind('click', function () {
-      return angular.forEach(_dropdowns, function (el) {
+      angular.forEach(_dropdowns, function (el) {
         el.removeClass('active');
       });
     });
