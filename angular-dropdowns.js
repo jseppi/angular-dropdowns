@@ -30,7 +30,7 @@ dd.directive('dropdownSelect', ['DropdownService', '$window',
         };
 
         // Does not register touchstart events outside of directive scope
-        var $clickEvent = ('click'||'touchstart'in $window);
+        var $clickEvent = ('click'||'touchstart' in $window);
         $element.bind($clickEvent, function (event) {
           event.stopPropagation();
           DropdownService.toggleActive($element);
@@ -80,6 +80,7 @@ dd.directive('dropdownSelectItem', [
         '<li ng-class="{divider: dropdownSelectItem.divider}">',
           '<a href="" class="dropdown-item"',
           ' ng-if="!dropdownSelectItem.divider"',
+          ' ng-href="{{dropdownSelectItem.href}}"',
           ' ng-click="selectItem()">',
             '{{dropdownSelectItem[dropdownItemLabel]}}',
           '</a>',
