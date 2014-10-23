@@ -7,6 +7,10 @@
   margin: 0 auto;
   padding: 10px;
 
+  -webkit-user-select:none;
+  -moz-user-select:none;
+  user-select:none;
+    
   /* Styles */
   background: #fff;
   border-radius: 7px;
