@@ -105,7 +105,7 @@ dd.directive('dropdownMenu', ['$parse', '$compile', 'DropdownService', '$window'
         $scope.labelField = $attrs.dropdownItemLabel || 'text';
 
         // Does not register touchstart events outside of directive scope.
-        var $clickEvent = ('click'||'touchstart'in $window);
+        var $clickEvent = ('click'||'touchstart' in $window);
         var $template = angular.element([
           '<ul class="dropdown">',
             '<li ng-repeat="item in dropdownMenu"',
@@ -172,6 +172,7 @@ dd.directive('dropdownMenuItem', [
         '<li ng-class="{divider: dropdownMenuItem.divider}">',
           '<a href="" class="dropdown-item"',
           ' ng-if="!dropdownMenuItem.divider"',
+          ' ng-href="{{dropdownMenuItem.href}}"',
           ' ng-click="selectItem()">',
             '{{dropdownMenuItem[dropdownItemLabel]}}',
           '</a>',
