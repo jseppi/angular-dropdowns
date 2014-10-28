@@ -54,8 +54,8 @@ dd.run(['$templateCache', function ($templateCache) {
 
 }]);
 
-dd.directive('dropdownSelect', ['DropdownService', '$window',
-  function (DropdownService, $window) {
+dd.directive('dropdownSelect', ['DropdownService',
+  function (DropdownService) {
     return {
       restrict: 'A',
       replace: true,
@@ -79,9 +79,7 @@ dd.directive('dropdownSelect', ['DropdownService', '$window',
           });
         };
 
-        // Does not register touchstart events outside of directive scope
-        var $clickEvent = ('click'||'touchstart' in $window);
-        $element.bind($clickEvent, function (event) {
+        $element.bind('click', function (event) {
           event.stopPropagation();
           DropdownService.toggleActive($element);
         });
@@ -119,8 +117,8 @@ dd.directive('dropdownSelectItem', [
   }
 ]);
 
-dd.directive('dropdownMenu', ['$parse', '$compile', 'DropdownService', '$window', '$templateCache',
-  function ($parse, $compile, DropdownService, $window, $templateCache) {
+dd.directive('dropdownMenu', ['$parse', '$compile', 'DropdownService', '$templateCache',
+  function ($parse, $compile, DropdownService, $templateCache) {
     return {
       restrict: 'A',
       replace: false,
@@ -133,8 +131,6 @@ dd.directive('dropdownMenu', ['$parse', '$compile', 'DropdownService', '$window'
       controller: ['$scope', '$element', '$attrs', function ($scope, $element, $attrs) {
         $scope.labelField = $attrs.dropdownItemLabel || 'text';
 
-        // Does not register touchstart events outside of directive scope.
-        var $clickEvent = ('click'||'touchstart' in $window);
         var $template = angular.element($templateCache.get('ngDropdowns/templates/dropdownMenu.html'));
         // Attach this controller to the element's data
         $template.data('$dropdownMenuController', this);
@@ -157,7 +153,7 @@ dd.directive('dropdownMenu', ['$parse', '$compile', 'DropdownService', '$window'
           });
         };
 
-        $element.bind($clickEvent, function (event) {
+        $element.bind('click', function (event) {
           event.stopPropagation();
           DropdownService.toggleActive(tpl);
         });
