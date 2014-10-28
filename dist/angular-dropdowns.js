@@ -1,8 +1,58 @@
 /**
  * @license MIT http://jseppi.mit-license.org/license.html
 */
+(function(window, angular, undefined) {
 'use strict';
+
 var dd = angular.module('ngDropdowns', []);
+
+dd.run(['$templateCache', function ($templateCache) {
+  $templateCache.put('ngDropdowns/templates/dropdownSelect.html', [
+    '<div class="wrap-dd-select">',
+      '<span class="selected">{{dropdownModel[labelField]}}</span>',
+      '<ul class="dropdown">',
+        '<li ng-repeat="item in dropdownSelect"',
+        ' class="dropdown-item"',
+        ' dropdown-select-item="item"',
+        ' dropdown-item-label="labelField">',
+        '</li>',
+      '</ul>',
+    '</div>'
+  ].join(''));
+
+  $templateCache.put('ngDropdowns/templates/dropdownSelectItem.html', [
+    '<li ng-class="{divider: dropdownSelectItem.divider}">',
+      '<a href="" class="dropdown-item"',
+      ' ng-if="!dropdownSelectItem.divider"',
+      ' ng-href="{{dropdownSelectItem.href}}"',
+      ' ng-click="selectItem()">',
+        '{{dropdownSelectItem[dropdownItemLabel]}}',
+      '</a>',
+    '</li>'
+  ].join(''));
+
+  $templateCache.put('ngDropdowns/templates/dropdownMenu.html', [
+    '<ul class="dropdown">',
+      '<li ng-repeat="item in dropdownMenu"',
+      ' class="dropdown-item"',
+      ' dropdown-item-label="labelField"',
+      ' dropdown-menu-item="item">',
+      '</li>',
+    '</ul>'
+  ].join(''));
+
+  $templateCache.put('ngDropdowns/templates/dropdownMenuItem.html', [
+    '<li ng-class="{divider: dropdownMenuItem.divider}">',
+      '<a href="" class="dropdown-item"',
+      ' ng-if="!dropdownMenuItem.divider"',
+      ' ng-href="{{dropdownMenuItem.href}}"',
+      ' ng-click="selectItem()">',
+        '{{dropdownMenuItem[dropdownItemLabel]}}',
+      '</a>',
+    '</li>'
+  ].join(''));
+
+}]);
 
 dd.directive('dropdownSelect', ['DropdownService', '$window',
   function (DropdownService, $window) {
@@ -40,19 +90,7 @@ dd.directive('dropdownSelect', ['DropdownService', '$window',
           DropdownService.unregister($element);
         });
       }],
-
-      template: [
-        '<div class="wrap-dd-select">',
-          '<span class="selected">{{dropdownModel[labelField]}}</span>',
-          '<ul class="dropdown">',
-            '<li ng-repeat="item in dropdownSelect"',
-            ' class="dropdown-item"',
-            ' dropdown-select-item="item"',
-            ' dropdown-item-label="labelField">',
-            '</li>',
-          '</ul>',
-        '</div>'
-      ].join('')
+      templateUrl: 'ngDropdowns/templates/dropdownSelect.html' 
     };
   }
 ]);
@@ -76,22 +114,13 @@ dd.directive('dropdownSelectItem', [
         };
       },
 
-      template: [
-        '<li ng-class="{divider: dropdownSelectItem.divider}">',
-          '<a href="" class="dropdown-item"',
-          ' ng-if="!dropdownSelectItem.divider"',
-          ' ng-href="{{dropdownSelectItem.href}}"',
-          ' ng-click="selectItem()">',
-            '{{dropdownSelectItem[dropdownItemLabel]}}',
-          '</a>',
-        '</li>'
-      ].join('')
+      templateUrl: 'ngDropdowns/templates/dropdownSelectItem.html' 
     };
   }
 ]);
 
-dd.directive('dropdownMenu', ['$parse', '$compile', 'DropdownService', '$window',
-  function ($parse, $compile, DropdownService, $window) {
+dd.directive('dropdownMenu', ['$parse', '$compile', 'DropdownService', '$window', '$templateCache',
+  function ($parse, $compile, DropdownService, $window, $templateCache) {
     return {
       restrict: 'A',
       replace: false,
@@ -106,15 +135,7 @@ dd.directive('dropdownMenu', ['$parse', '$compile', 'DropdownService', '$window'
 
         // Does not register touchstart events outside of directive scope.
         var $clickEvent = ('click'||'touchstart' in $window);
-        var $template = angular.element([
-          '<ul class="dropdown">',
-            '<li ng-repeat="item in dropdownMenu"',
-            ' class="dropdown-item"',
-            ' dropdown-item-label="labelField"',
-            ' dropdown-menu-item="item">',
-            '</li>',
-          '</ul>'
-        ].join(''));
+        var $template = angular.element($templateCache.get('ngDropdowns/templates/dropdownMenu.html'));
         // Attach this controller to the element's data
         $template.data('$dropdownMenuController', this);
 
@@ -168,16 +189,7 @@ dd.directive('dropdownMenuItem', [
         };
       },
 
-      template: [
-        '<li ng-class="{divider: dropdownMenuItem.divider}">',
-          '<a href="" class="dropdown-item"',
-          ' ng-if="!dropdownMenuItem.divider"',
-          ' ng-href="{{dropdownMenuItem.href}}"',
-          ' ng-click="selectItem()">',
-            '{{dropdownMenuItem[dropdownItemLabel]}}',
-          '</a>',
-        '</li>'
-      ].join('')
+      templateUrl: 'ngDropdowns/templates/dropdownMenuItem.html'
     };
   }
 ]);
@@ -219,3 +231,4 @@ dd.factory('DropdownService', ['$document',
     return service;
   }
 ]);
+})(window, window.angular);

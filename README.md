@@ -90,6 +90,37 @@ You can specify a function to call upon dropdown value change by specifying the 
 </div>
 ```
 
+## Custom Templates
+
+If you'd like to customize the templates more, you can override the values stored in the following `$templateCache` keys:
+
+  * `ngDropdowns/templates/dropdownSelect.html`
+  * `ngDropdowns/templates/dropdownSelectItem.html`
+  * `ngDropdowns/templates/dropdownMenu.html`
+  * `ngDropdowns/templates/dropdownMenuItem.html`
+
+To do this, you can put your custom templates in the cache from your `app.run()` method. For example:
+
+```js
+var app = angular.module('app', ['ngDropdowns']);
+
+app.run(function ($templateCache) {
+  $templateCache.put('ngDropdowns/templates/dropdownSelect.html', [
+    '<div class="wrap-dd-select my-custom-class">',
+      '<span class="selected my-selected-class">{{dropdownModel[labelField]}}</span>',
+      '<ul class="custom-dropdown">',
+        '<li ng-repeat="item in dropdownSelect"',
+        ' class="dropdown-item"',
+        ' dropdown-select-item="item"',
+        ' dropdown-item-label="labelField">',
+        '</li>',
+      '</ul>',
+    '</div>'
+  ].join(''));
+});
+
+```
+
 ## Developing
 
 Pull requests are welcome!
