@@ -55,8 +55,7 @@
   list-style: none;
 
   /* Hiding */
-  opacity: 0;
-  pointer-events: none;
+  visibility: hidden;
 }
 
 .wrap-dd-select .dropdown li.divider {
@@ -119,8 +118,7 @@
 }
 
 .wrap-dd-select.active .dropdown {
-  opacity: 1;
-  pointer-events: auto;
+  visibility: visible;
 }
 
 /****** dropdown-menu *******/
@@ -151,8 +149,7 @@
   list-style: none;
 
   /* Hiding */
-  opacity: 0;
-  pointer-events: none;
+  visibility: hidden;
 }
 
 .wrap-dd-menu .dropdown li.divider {
@@ -214,6 +211,5 @@
 }
 
 .wrap-dd-menu .dropdown.active {
-  opacity: 1;
-  pointer-events: auto;
+  visibility: visible;
 }
