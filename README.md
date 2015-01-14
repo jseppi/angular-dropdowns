@@ -28,10 +28,11 @@ app.controller('AppCtrl', function($scope) {
     $scope.ddSelectOptions = [
         {
             text: 'Option1',
-            iconCls: 'someicon'
+            value: 'a value'
         },
         {
             text: 'Option2',
+            value: 'another value',
             someprop: 'somevalue'
         },
         {
