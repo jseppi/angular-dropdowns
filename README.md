@@ -21,15 +21,12 @@ app.controller('AppCtrl', function($scope) {
 
     // By default the 'text' property will be used as the display text in the dropdown entry.
     // All options that are not dividers must have a 'text' property.
-    // Or you can specify a different property name via the dropdown-item-label attribute.
+    // You can specify a different property name in place of 'text' via the dropdown-item-label attribute.
+    // A divider with a 'text' property will also be non-selectable.
     //
     // If an options object has an 'href' property set, then that dropdown entry
     //   will behave as a link and cannot be selected.
     $scope.ddSelectOptions = [
-        {
-            text: 'divider label',
-            divider: true
-        },
         {
             text: 'Option1',
             value: 'a value'
@@ -43,6 +40,12 @@ app.controller('AppCtrl', function($scope) {
             // Any option with divider set to true will be a divider
             // in the menu and cannot be selected.
             divider: true
+        },
+        {
+            // Any divider option with a 'text' property will
+            // behave similarly to a divider and cannot be selected.
+            divider: true,
+            text: 'divider label'
         },
         {
             // Example of an option with the 'href' property
