@@ -51,7 +51,6 @@
   border: 1px solid rgba(0,0,0,0.17);
   box-shadow: 0 0 5px rgba(0,0,0,0.1);
   font-weight: normal;
-  transition: all 0.2s ease-in;
   list-style: none;
 
   /* Hiding */
@@ -77,7 +76,7 @@
   color: #8aa8bd;
   border-bottom: 1px solid #e6e8ea;
   box-shadow: inset 0 1px 0 rgba(255,255,255,1);
-  transition: all 0.3s ease-out;
+  cursor: pointer;
 }
 
 .wrap-dd-select .dropdown li i {
@@ -152,7 +151,6 @@
   border: 1px solid rgba(0,0,0,0.17);
   box-shadow: 0 0 5px rgba(0,0,0,0.1);
   font-weight: normal;
-  transition: all 0.2s ease-in;
   list-style: none;
 
   /* Hiding */
@@ -178,7 +176,7 @@
   color: #8aa8bd;
   border-bottom: 1px solid #e6e8ea;
   box-shadow: inset 0 1px 0 rgba(255,255,255,1);
-  transition: all 0.3s ease-out;
+  cursor: pointer;
 }
 
 .wrap-dd-menu .dropdown li i {
