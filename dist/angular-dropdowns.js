@@ -21,7 +21,7 @@ dd.run(['$templateCache', function ($templateCache) {
   ].join(''));
 
   $templateCache.put('ngDropdowns/templates/dropdownSelectItem.html', [
-    '<li ng-class="{divider: (dropdownSelectItem.divider && !dropdownSelectItem.text), \'divider-label\': (dropdownSelectItem.divider && dropdownSelectItem.text)}">',
+    '<li ng-class="{divider: (dropdownSelectItem.divider && !dropdownSelectItem[dropdownItemLabel]), \'divider-label\': (dropdownSelectItem.divider && dropdownSelectItem[dropdownItemLabel])}">',
       '<a href="" class="dropdown-item"',
       ' ng-if="!dropdownSelectItem.divider"',
       ' ng-href="{{dropdownSelectItem.href}}"',
@@ -29,7 +29,7 @@ dd.run(['$templateCache', function ($templateCache) {
         '{{dropdownSelectItem[dropdownItemLabel]}}',
       '</a>',
       '<span ng-if="dropdownSelectItem.divider">',
-        '{{dropdownSelectItem.text}}',
+        '{{dropdownSelectItem[dropdownItemLabel]}}',
       '</span>',
     '</li>'
   ].join(''));
@@ -45,7 +45,7 @@ dd.run(['$templateCache', function ($templateCache) {
   ].join(''));
 
   $templateCache.put('ngDropdowns/templates/dropdownMenuItem.html', [
-    '<li ng-class="{divider: dropdownMenuItem.divider, \'divider-label\': dropdownMenuItem.divider && dropdownMenuItem.text}">',
+    '<li ng-class="{divider: dropdownMenuItem.divider, \'divider-label\': dropdownMenuItem.divider && dropdownMenuItem[dropdownItemLabel]}">',
       '<a href="" class="dropdown-item"',
       ' ng-if="!dropdownMenuItem.divider"',
       ' ng-href="{{dropdownMenuItem.href}}"',
@@ -53,7 +53,7 @@ dd.run(['$templateCache', function ($templateCache) {
         '{{dropdownMenuItem[dropdownItemLabel]}}',
       '</a>',
       '<span ng-if="dropdownMenuItem.divider">',
-        '{{dropdownMenuItem.text}}',
+        '{{dropdownMenuItem[dropdownItemLabel]}}',
       '</span>',
     '</li>'
   ].join(''));
