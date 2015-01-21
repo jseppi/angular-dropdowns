@@ -27,6 +27,10 @@ app.controller('AppCtrl', function($scope) {
     //   will behave as a link and cannot be selected.
     $scope.ddSelectOptions = [
         {
+            text: 'divider label',
+            divider: true
+        },
+        {
             text: 'Option1',
             value: 'a value'
         },

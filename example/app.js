@@ -5,6 +5,9 @@ var app = angular.module('app', ['ngDropdowns']);
 app.controller('AppCtrl', function($scope) {
   $scope.ddSelectOptions = [
     {
+      text: 'Label',
+      divider: true
+    }, {
       text: 'Option1',
       value: 'one',
       iconCls: 'someicon'
@@ -25,6 +28,9 @@ app.controller('AppCtrl', function($scope) {
 
   $scope.ddMenuOptions = [
     {
+      text: 'Label',
+      divider: true
+    }, {
       text: 'Option1',
       iconCls: 'someicon'
     }, {
