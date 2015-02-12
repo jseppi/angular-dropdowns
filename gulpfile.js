@@ -13,6 +13,10 @@ var distDir = './dist';
 
 gulp.task('default', ['jshint', 'copy', 'uglify']);
 
+gulp.task('dev', ['default'], function () {
+  return gulp.watch([srcFile, srcCss], ['default']);
+});
+
 gulp.task('jshint', function () {
   return gulp.src(srcFile)
     .pipe(jshint())

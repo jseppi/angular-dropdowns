@@ -8,7 +8,12 @@
   },
   "homepage": "https://github.com/jseppi/angular-dropdowns",
   "bugs": "https://github.com/jseppi/angular-dropdowns/issues",
-  "keywords": ["angular", "dropdown", "menu", "select"],
+  "keywords": [
+    "angular",
+    "dropdown",
+    "menu",
+    "select"
+  ],
   "description": "AngularJS Dropdown Directives",
   "license": "MIT",
   "contributors": [
