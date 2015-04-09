@@ -1,6 +1,6 @@
 {
   "name": "angular-dropdowns",
-  "version": "1.0.0",
+  "version": "1.1.0",
   "author": {
     "name": "James Seppi",
     "email": "james.seppi@gmail.com",
@@ -23,7 +23,8 @@
     "tlvince",
     "dinodsaurus",
     "elishacook",
-    "alexisbg"
+    "alexisbg",
+    "BDomzalski"
   ],
   "repository": {
     "type": "git",
@@ -37,11 +38,6 @@
     "gulp-rename": "^1.2.0",
     "gulp-rimraf": "^0.1.0",
     "gulp-uglify": "^0.3.2",
-    "jshint-stylish": "^0.4.0",
-    "karma": "^0.12.22"
-  },
-  "engines": {
-    "node": "0.10.x",
-    "npm": "1.4.x"
+    "jshint-stylish": "^0.4.0"
   }
 }
