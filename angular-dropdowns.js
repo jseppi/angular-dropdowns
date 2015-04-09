@@ -72,7 +72,7 @@ dd.directive('dropdownSelect', ['DropdownService',
         dropdownOnchange: '&'
       },
 
-      controller: ['$scope', '$element', '$attrs', function ($scope, $element, $attrs) {
+      controller: ['$scope', '$element', function ($scope, $element) {
         $scope.labelField = $scope.dropdownItemLabel || 'text';
 
         DropdownService.register($element);
@@ -136,7 +136,7 @@ dd.directive('dropdownMenu', ['$parse', '$compile', 'DropdownService', '$templat
         dropdownOnchange: '&'
       },
 
-      controller: ['$scope', '$element', '$attrs', function ($scope, $element, $attrs) {
+      controller: ['$scope', '$element', function ($scope, $element) {
         $scope.labelField = $scope.dropdownItemLabel || 'text';
 
         var $template = angular.element($templateCache.get('ngDropdowns/templates/dropdownMenu.html'));
