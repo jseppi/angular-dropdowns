@@ -5,7 +5,7 @@
     <title>angular-dropdowns example</title>
     <meta name="viewport" content="width=device-width">
     <link rel="stylesheet" href="normalize.css">
-    <link rel="stylesheet" href="../dist/angular-dropdowns.css">
+    <link rel="stylesheet" href="../dist/angular-dropdowns.min.css">
     <link rel="stylesheet" href="page.css">
     <script src="http://ajax.googleapis.com/ajax/libs/angularjs/1.2.23/angular.min.js"></script>
     <script type="text/javascript" src="../dist/angular-dropdowns.min.js"></script>
@@ -19,11 +19,22 @@
         <div dropdown-select="ddSelectOptions" dropdown-model="ddSelectSelected"></div>
         <hr>
 
+        <h1>Dropdown Select Disabled</h1>
+        <p>You have selected: {{ddSelectSelected}}</p>
+        <div dropdown-select="ddSelectOptions" dropdown-model="ddSelectSelected" dropdown-disabled="true"></div>
+        <hr>
+
         <h1>Dropdown Menu</h1>
 
         <h2>On a Button</h2>
         <p>You have selected: {{ddMenuSelected}}</p>
         <button dropdown-menu="ddMenuOptions" dropdown-model="ddMenuSelected" class="btn-menu">
+          Menu
+        </button>
+
+        <h2>On a Button Disabled</h2>
+        <p>You have selected: {{ddMenuSelected}}</p>
+        <button dropdown-menu="ddMenuOptions" dropdown-model="ddMenuSelected" dropdown-disabled="true" class="btn-menu-disabled">
           Menu
         </button>
 

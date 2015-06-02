@@ -10,6 +10,22 @@
   cursor: pointer;
 }
 
+.btn-menu-disabled {
+  padding: 5px 25px;
+  background: #fff;
+  border: 1px solid rgba(0,0,0,0.15);
+  border-radius: 7px;
+  box-shadow: 0 1px 1px rgba(50,50,50,0.25);
+  /*style the text*/
+  color: #5B6A7D;
+  font-weight: bold;
+  cursor: default;
+}
+
+.btn-menu-disabled:focus {
+  outline: 0;
+}
+
 .btn-menu:hover, .btn-menu:focus {
   box-shadow: 0 1px 1px rgba(50,50,50,0.75);
 }
