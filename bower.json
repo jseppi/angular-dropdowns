@@ -16,14 +16,16 @@
   ],
   "description": "AngularJS Dropdown Directives",
   "main": [
-    "dist/angular-dropdowns.js",
-    "dist/angular-dropdowns.css"
+    "dist/angular-dropdowns.min.js",
+    "dist/angular-dropdowns.min.css"
   ],
   "keywords": [
     "angular",
     "dropdown",
     "select"
   ],
-  "ignore": ["example"],
+  "ignore": [
+    "example"
+  ],
   "license": "MIT"
 }

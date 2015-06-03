@@ -10,7 +10,7 @@
   -webkit-user-select:none;
   -moz-user-select:none;
   user-select:none;
-    
+
   /* Styles */
   background: #fff;
   border-radius: 7px;
@@ -22,6 +22,14 @@
   /* Font settings */
   font-weight: bold;
   color: #8AA8BD;
+}
+
+.disabled {
+  /* Styles */
+  cursor: default;
+
+  /* Font settings */
+  color: #5B6A7D;
 }
 
 .wrap-dd-select:after {
@@ -37,12 +45,17 @@
   border-color: #8aa8bd transparent;
 }
 
+.disabled:after {
+  border: none;
+}
+
 .wrap-dd-select .dropdown {
   /* Size & position */
   position: absolute;
   top: 100%;
   left: 0;
   right: 0;
+  z-index: 10;
 
   /* Styles */
   background: white;
