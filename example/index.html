@@ -14,55 +14,38 @@
   <body ng-app="app" style="margin-top:50px;">
     <div ng-controller="AppCtrl">
       <div style="margin:0 auto; text-align:center;">
+        <button type="button" ng-click="dropdownsDisabled = !dropdownsDisabled" class="btn-menu">
+          {{dropdownsDisabled ? 'Enable All' : 'Disable All' }}
+        </button>
+
         <h1>Dropdown Select</h1>
-        <p>You have selected: {{ddSelectSelected}}</p>
-        <div dropdown-select="ddSelectOptions" dropdown-model="ddSelectSelected"></div>
-        <hr>
 
-        <h1>Dropdown Select Disabled</h1>
         <p>You have selected: {{ddSelectSelected}}</p>
-        <div dropdown-select="ddSelectOptions" dropdown-model="ddSelectSelected" dropdown-disabled="true"></div>
-        <hr>
+        <div dropdown-select="ddSelectOptions" dropdown-model="ddSelectSelected" dropdown-disabled="dropdownsDisabled"></div>
 
+        <hr>
+        
         <h1>Dropdown Menu</h1>
 
         <h2>On a Button</h2>
         <p>You have selected: {{ddMenuSelected}}</p>
-        <button dropdown-menu="ddMenuOptions" dropdown-model="ddMenuSelected" class="btn-menu">
-          Menu
-        </button>
-
-        <h2>On a Button Disabled</h2>
-        <p>You have selected: {{ddMenuSelected}}</p>
-        <button dropdown-menu="ddMenuOptions" dropdown-model="ddMenuSelected" dropdown-disabled="true" class="btn-menu-disabled">
+        <button dropdown-menu="ddMenuOptions" dropdown-model="ddMenuSelected" dropdown-disabled="dropdownsDisabled" class="btn-menu">
           Menu
         </button>
 
         <h2>On a Div</h2>
         <p>And using a custom label field</p>
         <p>You have selected: {{ddMenuSelected2}}</p>
-        <div style="cursor:pointer; width:100px; margin:0 auto;" dropdown-menu="ddMenuOptions2" dropdown-model="ddMenuSelected2" dropdown-item-label='name' class="">
-          Menu
-        </div>
-
-        <h2>On a Div Disabled</h2>
-        <p>And using a custom label field</p>
-        <p>You have selected: {{ddMenuSelected2}}</p>
-        <div style="cursor:pointer; width:100px; margin:0 auto;" dropdown-menu="ddMenuOptions2" dropdown-model="ddMenuSelected2" dropdown-item-label='name' dropdown-disabled="true" class="menu-disabled">
+        <div style="cursor:pointer; width:100px; margin:0 auto;" dropdown-menu="ddMenuOptions2" dropdown-model="ddMenuSelected2" dropdown-disabled="dropdownsDisabled" dropdown-item-label="name">
           Menu
         </div>
 
         <h2>On an Anchor</h2>
         <p>You have selected: {{ddMenuSelected3}}</p>
-        <a href='' style="width:100px; margin:0 auto;" dropdown-menu="ddMenuOptions3" dropdown-model="ddMenuSelected3" class="">
+        <a href='' style="width:100px; margin:0 auto;" dropdown-menu="ddMenuOptions3" dropdown-model="ddMenuSelected3" dropdown-disabled="dropdownsDisabled">
           Menu
         </a>
 
-        <h2>On an Anchor Disabled</h2>
-        <p>You have selected: {{ddMenuSelected3}}</p>
-        <a href='' style="width:100px; margin:0 auto;" dropdown-menu="ddMenuOptions3" dropdown-model="ddMenuSelected3" dropdown-disabled="true" class="menu-disabled">
-          Menu
-        </a>
       </div>
     </div>
   </body>
