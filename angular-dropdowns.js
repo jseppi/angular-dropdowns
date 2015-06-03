@@ -8,7 +8,7 @@
 
   dd.run(['$templateCache', function ($templateCache) {
     $templateCache.put('ngDropdowns/templates/dropdownSelect.html', [
-      '<div ng-class="{\'wrap-dd-select disabled\': dropdownDisabled, \'wrap-dd-select\': !dropdownDisabled}">',
+      '<div ng-class="{\'disabled\': dropdownDisabled}" class="wrap-dd-select">',
       '<span class="selected">{{dropdownModel[labelField]}}</span>',
       '<ul class="dropdown">',
       '<li ng-repeat="item in dropdownSelect"',
@@ -86,12 +86,14 @@
               selected: selected
             });
           };
-          if (!$scope.dropdownDisabled) {
-            $element.bind('click', function (event) {
-              event.stopPropagation();
+
+          $element.bind('click', function (event) {
+            event.stopPropagation();
+            if (!$scope.dropdownDisabled) {
               DropdownService.toggleActive($element);
-            });
-          }
+            }
+          });
+
           $scope.$on('$destroy', function () {
             DropdownService.unregister($element);
           });
@@ -162,12 +164,14 @@
               selected: selected
             });
           };
-          if (!$scope.dropdownDisabled) {
-            $element.bind('click', function (event) {
-              event.stopPropagation();
+
+          $element.bind('click', function (event) {
+            event.stopPropagation();
+            if (!$scope.dropdownDisabled) {
               DropdownService.toggleActive(tpl);
-            });
-          }
+            }
+          });
+
           $scope.$on('$destroy', function () {
             DropdownService.unregister(tpl);
           });
