@@ -148,11 +148,13 @@
           $template.data('$dropdownMenuController', this);
 
           var tpl = $compile($template)($scope);
-          var $wrap = angular.element('<div class="wrap-dd-menu"></div>');
+          var $wrap = $compile(angular.element(
+            '<div class="wrap-dd-menu" ng-class="{\'disabled\': dropdownDisabled}"></div>')
+          )($scope);
 
           $element.replaceWith($wrap);
           $wrap.append($element);
-          $wrap.append(tpl);
+          $wrap.append($template);
 
           DropdownService.register(tpl);
 
