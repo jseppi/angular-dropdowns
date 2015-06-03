@@ -1,6 +1,6 @@
 {
   "name": "angular-dropdowns",
-  "version": "1.1.0",
+  "version": "1.2.0",
   "author": {
     "name": "James Seppi",
     "email": "james.seppi@gmail.com",
@@ -24,7 +24,8 @@
     "dinodsaurus",
     "elishacook",
     "alexisbg",
-    "BDomzalski"
+    "BDomzalski",
+    "Chinokao"
   ],
   "repository": {
     "type": "git",

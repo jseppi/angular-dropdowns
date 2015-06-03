@@ -1,6 +1,6 @@
 {
   "name": "angular-dropdowns",
-  "version": "1.1.0",
+  "version": "1.2.0",
   "homepage": "https://github.com/jseppi/angular-dropdowns",
   "authors": [
     "James Seppi <james.seppi@gmail.com> (http://github.com/jseppi)",
@@ -12,7 +12,8 @@
     "dinodsaurus",
     "elishacook",
     "alexisbg",
-    "BDomzalski"
+    "BDomzalski",
+    "Chinokao"
   ],
   "description": "AngularJS Dropdown Directives",
   "main": [

@@ -98,6 +98,15 @@ You can specify a function to call upon dropdown value change by specifying the 
 </div>
 ```
 
+You can set `dropdown-disabled` to disable the dropdown when the bound value is truthy.
+
+```html
+<div dropdown-select="ddSelectOptions"
+    dropdown-model="ddSelectSelected"
+    dropdown-disabled="isDropdownDisabled" >
+</div>
+```
+
 ## Custom Templates
 
 If you'd like to customize the templates more, you can override the values stored in the following `$templateCache` keys:
