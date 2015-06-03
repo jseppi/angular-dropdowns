@@ -2,7 +2,7 @@
 
 var gulp = require('gulp');
 var uglify = require('gulp-uglify');
-var rimraf = require('gulp-rimraf');
+var del = require('del');
 var jshint = require('gulp-jshint');
 var rename = require('gulp-rename');
 var stylish = require('jshint-stylish');
@@ -52,6 +52,5 @@ gulp.task('minifycss', function () {
 });
 
 gulp.task('clean', function () {
-  return gulp.src(distDir)
-    .pipe(rimraf());
+  return del([distDir+'/*']);
 });
