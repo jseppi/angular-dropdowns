@@ -1,16 +1,16 @@
 /**
  * @license MIT http://jseppi.mit-license.org/license.html
  */
-(function(window, angular, undefined) {
+(function (window, angular, undefined) {
   'use strict';
 
   var dd = angular.module('ngDropdowns', []);
 
   dd.run(['$templateCache', function ($templateCache) {
     $templateCache.put('ngDropdowns/templates/dropdownSelect.html', [
-      '<div ng-class="{\'wrap-dd-select-disabled\': dropdownDisabled, \'wrap-dd-select\': !dropdownDisabled}">',
+      '<div ng-class="{\'wrap-dd-select disabled\': dropdownDisabled, \'wrap-dd-select\': !dropdownDisabled}">',
       '<span class="selected">{{dropdownModel[labelField]}}</span>',
-      '<ul ng-hide="dropdownDisabled" class="dropdown">',
+      '<ul class="dropdown">',
       '<li ng-repeat="item in dropdownSelect"',
       ' class="dropdown-item"',
       ' dropdown-select-item="item"',
@@ -35,7 +35,7 @@
     ].join(''));
 
     $templateCache.put('ngDropdowns/templates/dropdownMenu.html', [
-      '<ul ng-hide="dropdownDisabled" class="dropdown">',
+      '<ul class="dropdown">',
       '<li ng-repeat="item in dropdownMenu"',
       ' class="dropdown-item"',
       ' dropdown-item-label="labelField"',
@@ -86,12 +86,12 @@
               selected: selected
             });
           };
-
-          $element.bind('click', function (event) {
-            event.stopPropagation();
-            DropdownService.toggleActive($element);
-          });
-
+          if (!$scope.dropdownDisabled) {
+            $element.bind('click', function (event) {
+              event.stopPropagation();
+              DropdownService.toggleActive($element);
+            });
+          }
           $scope.$on('$destroy', function () {
             DropdownService.unregister($element);
           });

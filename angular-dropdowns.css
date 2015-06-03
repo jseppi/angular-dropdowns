@@ -24,6 +24,14 @@
   color: #8AA8BD;
 }
 
+.disabled {
+  /* Styles */
+  cursor: default;
+
+  /* Font settings */
+  color: #5B6A7D;
+}
+
 .wrap-dd-select:after {
   content: "";
   width: 0;
@@ -37,27 +45,8 @@
   border-color: #8aa8bd transparent;
 }
 
-.wrap-dd-select-disabled {
-  /* Size and position */
-  position: relative;
-  width: 200px;
-  margin: 0 auto;
-  padding: 10px;
-
-  -webkit-user-select:none;
-  -moz-user-select:none;
-  user-select:none;
-
-  /* Styles */
-  background: #fff;
-  border-radius: 7px;
-  border: 1px solid rgba(0,0,0,0.15);
-  box-shadow: 0 1px 1px rgba(50,50,50,0.1);
-  outline: none;
-
-  /* Font settings */
-  font-weight: bold;
-  color: #5B6A7D;
+.disabled:after {
+  border: none;
 }
 
 .wrap-dd-select .dropdown {
@@ -66,6 +55,7 @@
   top: 100%;
   left: 0;
   right: 0;
+  z-index: 10;
 
   /* Styles */
   background: white;

@@ -8,7 +8,7 @@
     <link rel="stylesheet" href="../dist/angular-dropdowns.min.css">
     <link rel="stylesheet" href="page.css">
     <script src="http://ajax.googleapis.com/ajax/libs/angularjs/1.2.23/angular.min.js"></script>
-    <script type="text/javascript" src="../dist/angular-dropdowns.min.js"></script>
+    <script type="text/javascript" src="../dist/angular-dropdowns.js"></script>
     <script type="text/javascript" src="app.js"></script>
   </head>
   <body ng-app="app" style="margin-top:50px;">
@@ -45,9 +45,22 @@
           Menu
         </div>
 
+        <h2>On a Div Disabled</h2>
+        <p>And using a custom label field</p>
+        <p>You have selected: {{ddMenuSelected2}}</p>
+        <div style="cursor:pointer; width:100px; margin:0 auto;" dropdown-menu="ddMenuOptions2" dropdown-model="ddMenuSelected2" dropdown-item-label='name' dropdown-disabled="true" class="menu-disabled">
+          Menu
+        </div>
+
         <h2>On an Anchor</h2>
         <p>You have selected: {{ddMenuSelected3}}</p>
         <a href='' style="width:100px; margin:0 auto;" dropdown-menu="ddMenuOptions3" dropdown-model="ddMenuSelected3" class="">
+          Menu
+        </a>
+
+        <h2>On an Anchor Disabled</h2>
+        <p>You have selected: {{ddMenuSelected3}}</p>
+        <a href='' style="width:100px; margin:0 auto;" dropdown-menu="ddMenuOptions3" dropdown-model="ddMenuSelected3" dropdown-disabled="true" class="menu-disabled">
           Menu
         </a>
       </div>

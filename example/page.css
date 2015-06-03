@@ -22,7 +22,15 @@
   cursor: default;
 }
 
+.menu-disabled {
+  cursor: default;
+}
+
 .btn-menu-disabled:focus {
+  outline: 0;
+}
+
+.menu-disabled:focus {
   outline: 0;
 }
 
