@@ -79,8 +79,8 @@
           DropdownService.register($element);
 
           this.select = function (selected) {
-            if (selected !== $scope.dropdownModel) {
-              angular.copy(selected, $scope.dropdownModel);
+            if (!angular.equals(selected, $scope.dropdownModel)) {
+                $scope.dropdownModel = selected;
             }
             $scope.dropdownOnchange({
               selected: selected
@@ -159,8 +159,8 @@
           DropdownService.register(tpl);
 
           this.select = function (selected) {
-            if (selected !== $scope.dropdownModel) {
-              angular.copy(selected, $scope.dropdownModel);
+            if (!angular.equals(selected, $scope.dropdownModel)) {
+                $scope.dropdownModel = selected;
             }
             $scope.dropdownOnchange({
               selected: selected
