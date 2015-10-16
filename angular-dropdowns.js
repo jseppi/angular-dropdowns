@@ -8,7 +8,7 @@
 
   dd.run(['$templateCache', function ($templateCache) {
     $templateCache.put('ngDropdowns/templates/dropdownSelect.html', [
-      '<div ng-class="{\'disabled\': dropdownDisabled}" class="wrap-dd-select">',
+      '<div ng-class="{\'disabled\': dropdownDisabled}" class="wrap-dd-select" tabindex="0">',
       '<span class="selected">{{dropdownModel[labelField]}}</span>',
       '<ul class="dropdown">',
       '<li ng-repeat="item in dropdownSelect"',
@@ -88,6 +88,13 @@
           };
 
           $element.bind('click', function (event) {
+            event.stopPropagation();
+            if (!$scope.dropdownDisabled) {
+              DropdownService.toggleActive($element);
+            }
+          });
+
+          $element.bind('focus', function (event) {
             event.stopPropagation();
             if (!$scope.dropdownDisabled) {
               DropdownService.toggleActive($element);
@@ -216,6 +223,15 @@
         angular.forEach(_dropdowns, function (el) {
           el.removeClass('active');
         });
+      });
+
+      body.keydown(function(e) {
+        var code = e.keyCode || e.which;
+        if (code == '9') {
+          angular.forEach(_dropdowns, function (el) {
+            el.removeClass('active');
+          });
+        }
       });
 
       service.register = function (ddEl) {
