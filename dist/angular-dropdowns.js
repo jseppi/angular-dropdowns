@@ -8,7 +8,7 @@
 
   dd.run(['$templateCache', function ($templateCache) {
     $templateCache.put('ngDropdowns/templates/dropdownSelect.html', [
-      '<div ng-class="{\'disabled\': dropdownDisabled}" class="wrap-dd-select">',
+      '<div ng-class="{\'disabled\': dropdownDisabled}" class="wrap-dd-select" tabindex="0">',
       '<span class="selected">{{dropdownModel[labelField]}}</span>',
       '<ul class="dropdown">',
       '<li ng-repeat="item in dropdownSelect"',
@@ -87,12 +87,15 @@
             });
           };
 
-          $element.bind('click', function (event) {
+          var onEvent = function (event) {
             event.stopPropagation();
             if (!$scope.dropdownDisabled) {
               DropdownService.toggleActive($element);
             }
-          });
+          };
+
+          $element.bind('click', onEvent);
+          $element.bind('focus', onEvent);
 
           $scope.$on('$destroy', function () {
             DropdownService.unregister($element);
@@ -167,12 +170,14 @@
             });
           };
 
-          $element.bind('click', function (event) {
+          var onEvent = function (event) {
             event.stopPropagation();
             if (!$scope.dropdownDisabled) {
-              DropdownService.toggleActive(tpl);
+              DropdownService.toggleActive($element);
             }
-          });
+          };
+
+          $element.bind('click', onEvent);
 
           $scope.$on('$destroy', function () {
             DropdownService.unregister(tpl);
@@ -216,6 +221,16 @@
         angular.forEach(_dropdowns, function (el) {
           el.removeClass('active');
         });
+      });
+
+      body.bind('keydown', function (evt) {
+        var code = evt.keyCode || evt.which;
+        //on tab, remove 'active' any dropdown element
+        if (code === 9) {
+          angular.forEach(_dropdowns, function (el) {
+            el.removeClass('active');
+          });
+        }
       });
 
       service.register = function (ddEl) {
