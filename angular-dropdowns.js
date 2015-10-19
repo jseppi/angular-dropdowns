@@ -87,19 +87,15 @@
             });
           };
 
-          $element.bind('click', function (event) {
+          var onEvent = function (event) {
             event.stopPropagation();
             if (!$scope.dropdownDisabled) {
               DropdownService.toggleActive($element);
             }
-          });
+          };
 
-          $element.bind('focus', function (event) {
-            event.stopPropagation();
-            if (!$scope.dropdownDisabled) {
-              DropdownService.toggleActive($element);
-            }
-          });
+          $element.bind('click', onEvent);
+          $element.bind('focus', onEvent);
 
           $scope.$on('$destroy', function () {
             DropdownService.unregister($element);
@@ -174,12 +170,14 @@
             });
           };
 
-          $element.bind('click', function (event) {
+          var onEvent = function (event) {
             event.stopPropagation();
             if (!$scope.dropdownDisabled) {
-              DropdownService.toggleActive(tpl);
+              DropdownService.toggleActive($element);
             }
-          });
+          };
+
+          $element.bind('click', onEvent);
 
           $scope.$on('$destroy', function () {
             DropdownService.unregister(tpl);
@@ -225,9 +223,10 @@
         });
       });
 
-      body.keydown(function(e) {
-        var code = e.keyCode || e.which;
-        if (code == '9') {
+      body.bind('keydown', function (evt) {
+        var code = evt.keyCode || evt.which;
+        //on tab, remove 'active' any dropdown element
+        if (code === 9) {
           angular.forEach(_dropdowns, function (el) {
             el.removeClass('active');
           });
