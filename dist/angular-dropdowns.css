@@ -6,6 +6,8 @@
   margin: 0 auto;
   padding: 10px;
 
+
+
   -webkit-user-select:none;
   -moz-user-select:none;
   user-select:none;
@@ -24,7 +26,6 @@
   cursor: default;
   color: #5B6A7D;
 }
-
 .wrap-dd-select:after {
   content: "";
   width: 0;
@@ -56,6 +57,8 @@
   font-weight: normal;
   list-style: none;
   visibility: hidden;
+  max-height: 300px;
+  overflow-y: scroll; /*Provide an auto overflow to display scroll*/
 }
 
 .wrap-dd-select .dropdown li.divider {
