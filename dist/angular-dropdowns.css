@@ -58,7 +58,7 @@
   list-style: none;
   visibility: hidden;
   max-height: 300px;
-  overflow-y: scroll; /*Provide an auto overflow to display scroll*/
+  overflow-y: auto; /*Provide an auto overflow to display scroll*/
 }
 
 .wrap-dd-select .dropdown li.divider {
