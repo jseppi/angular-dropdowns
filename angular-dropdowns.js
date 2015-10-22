@@ -90,16 +90,9 @@
 
           $element.bind('click', function (event) {
             event.stopPropagation();
-          });
-
-          $element.bind('focus', function () {
             if (!$scope.dropdownDisabled) {
               DropdownService.toggleActive($element);
             }
-          });
-
-          $element.bind('blur', function () {
-            DropdownService.clearActive();
           });
 
           $scope.$on('$destroy', function () {
