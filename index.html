@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>angular-dropdowns example</title>
+    <meta name="viewport" content="width=device-width">
+    <link rel="stylesheet" href="example/normalize.css">
+    <link rel="stylesheet" href="dist/angular-dropdowns.min.css">
+    <link rel="stylesheet" href="example/page.css">
+    <script src="http://ajax.googleapis.com/ajax/libs/angularjs/1.2.23/angular.min.js"></script>
+    <script type="text/javascript" src="dist/angular-dropdowns.js"></script>
+    <script type="text/javascript" src="example/app.js"></script>
+  </head>
+  <body ng-app="app" style="margin-top:50px;">
+    <div ng-controller="AppCtrl">
+      <div style="margin:0 auto; text-align:center;">
+        <button type="button" ng-click="dropdownsDisabled = !dropdownsDisabled" class="btn-menu">
+          {{dropdownsDisabled ? 'Enable All' : 'Disable All' }}
+        </button>
+
+        <h1>Dropdown Select</h1>
+
+        <p>You have selected: {{ddSelectSelected}}</p>
+        <div dropdown-select="ddSelectOptions" dropdown-model="ddSelectSelected" dropdown-disabled="dropdownsDisabled"></div>
+
+        <hr>
+
+        <h1>Dropdown Menu</h1>
+
+        <h2>On a Button</h2>
+        <p>You have selected: {{ddMenuSelected}}</p>
+        <button dropdown-menu="ddMenuOptions" dropdown-model="ddMenuSelected" dropdown-disabled="dropdownsDisabled" class="btn-menu">
+          Menu
+        </button>
+
+        <h2>On a Div</h2>
+        <p>And using a custom label field</p>
+        <p>You have selected: {{ddMenuSelected2}}</p>
+        <div style="cursor:pointer; width:100px; margin:0 auto;" dropdown-menu="ddMenuOptions2" dropdown-model="ddMenuSelected2" dropdown-disabled="dropdownsDisabled" dropdown-item-label="name">
+          Menu
+        </div>
+
+        <h2>On an Anchor</h2>
+        <p>You have selected: {{ddMenuSelected3}}</p>
+        <a href='' style="width:100px; margin:0 auto;" dropdown-menu="ddMenuOptions3" dropdown-model="ddMenuSelected3" dropdown-disabled="dropdownsDisabled">
+          Menu
+        </a>
+
+      </div>
+    </div>
+  </body>
+</html>
