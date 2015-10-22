@@ -85,17 +85,22 @@
             $scope.dropdownOnchange({
               selected: selected
             });
+            $element[0].blur(); //trigger blur to clear active
           };
 
-          var onEvent = function (event) {
+          $element.bind('click', function (event) {
             event.stopPropagation();
+          });
+
+          $element.bind('focus', function () {
             if (!$scope.dropdownDisabled) {
               DropdownService.toggleActive($element);
             }
-          };
+          });
 
-          $element.bind('click', onEvent);
-          $element.bind('focus', onEvent);
+          $element.bind('blur', function () {
+            DropdownService.clearActive();
+          });
 
           $scope.$on('$destroy', function () {
             DropdownService.unregister($element);
@@ -170,14 +175,12 @@
             });
           };
 
-          var onEvent = function (event) {
+          $element.bind('click', function (event) {
             event.stopPropagation();
             if (!$scope.dropdownDisabled) {
               DropdownService.toggleActive(tpl);
             }
-          };
-
-          $element.bind('click', onEvent);
+          });
 
           $scope.$on('$destroy', function () {
             DropdownService.unregister(tpl);
@@ -223,16 +226,6 @@
         });
       });
 
-      body.bind('keydown', function (evt) {
-        var code = evt.keyCode || evt.which;
-        //on tab, remove 'active' any dropdown element
-        if (code === 9) {
-          angular.forEach(_dropdowns, function (el) {
-            el.removeClass('active');
-          });
-        }
-      });
-
       service.register = function (ddEl) {
         _dropdowns.push(ddEl);
       };
@@ -253,6 +246,16 @@
         });
 
         ddEl.toggleClass('active');
+      };
+
+      service.clearActive = function () {
+        angular.forEach(_dropdowns, function (el) {
+          el.removeClass('active');
+        });
+      };
+
+      service.isActive = function (ddEl) {
+        return ddEl.hasClass('active');
       };
 
       return service;
