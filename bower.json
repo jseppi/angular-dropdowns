@@ -27,7 +27,7 @@
     "select"
   ],
   "ignore": [
-    "example"
+    "example", "index.html"
   ],
   "license": "MIT"
 }

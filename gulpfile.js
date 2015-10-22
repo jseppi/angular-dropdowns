@@ -7,10 +7,12 @@ var jshint = require('gulp-jshint');
 var rename = require('gulp-rename');
 var stylish = require('jshint-stylish');
 var minifyCss = require('gulp-minify-css');
+var ghPages = require('gulp-gh-pages');
 
 var srcFile = 'angular-dropdowns.js';
 var srcCss = 'angular-dropdowns.css';
 var distDir = './dist';
+var exampleDir = './example';
 
 gulp.task('default', ['jshint', 'copy', 'uglify', 'minifycss']);
 
@@ -51,6 +53,12 @@ gulp.task('minifycss', function () {
     .pipe(gulp.dest(distDir));
 });
 
+
+gulp.task('pages', ['default'], function () {
+  return gulp.src(['index.html', distDir + '/**/*', exampleDir + '/**/*'], {"base": "."})
+    .pipe(ghPages());
+});
+
 gulp.task('clean', function () {
-  return del([distDir+'/*']);
+  return del([distDir + '/*']);
 });
