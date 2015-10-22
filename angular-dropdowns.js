@@ -1,7 +1,7 @@
 /**
  * @license MIT http://jseppi.mit-license.org/license.html
  */
-(function (window, angular, undefined) {
+(function (window, angular) {
   'use strict';
 
   var dd = angular.module('ngDropdowns', []);
@@ -173,7 +173,7 @@
           var onEvent = function (event) {
             event.stopPropagation();
             if (!$scope.dropdownDisabled) {
-              DropdownService.toggleActive($element);
+              DropdownService.toggleActive(tpl);
             }
           };
 
