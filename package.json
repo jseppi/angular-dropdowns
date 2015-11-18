@@ -6,6 +6,7 @@
     "email": "james.seppi@gmail.com",
     "url": "http://www.github.com/jseppi"
   },
+  "main": "dist/angular-dropdowns.min.js",
   "homepage": "https://github.com/jseppi/angular-dropdowns",
   "bugs": "https://github.com/jseppi/angular-dropdowns/issues",
   "keywords": [
