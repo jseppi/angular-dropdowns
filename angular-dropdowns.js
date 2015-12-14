@@ -58,6 +58,9 @@
       '</li>'
     ].join(''));
 
+    $templateCache.put('ngDropdowns/templates/dropdownMenuWrap.html',
+      '<div class="wrap-dd-menu" ng-class="{\'disabled\': dropdownDisabled}"></div>'
+    );
   }]);
 
   dd.directive('dropdownSelect', ['DropdownService',
@@ -149,8 +152,8 @@
           $template.data('$dropdownMenuController', this);
 
           var tpl = $compile($template)($scope);
-          var $wrap = $compile(angular.element(
-            '<div class="wrap-dd-menu" ng-class="{\'disabled\': dropdownDisabled}"></div>')
+          var $wrap = $compile(
+            angular.element($templateCache.get('ngDropdowns/templates/dropdownMenuWrap.html'))
           )($scope);
 
           $element.replaceWith($wrap);
